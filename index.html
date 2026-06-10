@@ -23,69 +23,31 @@
     --radius: 12px;
     --shadow: 0 2px 20px rgba(13,27,46,0.12);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--green-pale); color: var(--text); min-height: 100vh; }
-
   .header {
     background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%);
-    padding: 18px 24px 0;
-    display: flex; flex-direction: column; align-items: center;
+    padding: 18px 24px 0; display: flex; flex-direction: column; align-items: center;
     border-bottom: 2px solid #c9a84c40;
   }
   .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-  .logo-icon {
-    width: 44px; height: 44px;
-    background: linear-gradient(135deg, #c9a84c, #e8c96a);
-    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px;
-  }
+  .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #c9a84c, #e8c96a); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
   .header-title h1 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--white); letter-spacing: 1px; line-height: 1; }
   .header-title p { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
   .nav { display: flex; width: 100%; max-width: 760px; }
-  .nav-btn {
-    flex: 1; background: none; border: none; color: rgba(255,255,255,0.55);
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
-    padding: 12px 0; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; text-transform: uppercase;
-  }
+  .nav-btn { flex: 1; background: none; border: none; color: rgba(255,255,255,0.55); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; padding: 12px 0; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; text-transform: uppercase; }
   .nav-btn.active { color: var(--white); border-bottom-color: var(--yellow); }
   .nav-btn:hover { color: var(--white); }
 
-  /* SYNC STATUS BADGE */
-  .sync-badge {
-    position: fixed; top: 12px; right: 12px; z-index: 9998;
-    background: rgba(13,27,46,0.85); color: rgba(255,255,255,0.8);
-    border-radius: 20px; padding: 5px 12px; font-size: 11px; font-weight: 600;
-    display: flex; align-items: center; gap: 6px;
-    backdrop-filter: blur(8px); border: 1px solid rgba(201,168,76,0.25);
-    transition: opacity 0.4s;
-  }
+  .sync-badge { position: fixed; top: 12px; right: 12px; z-index: 9998; background: rgba(13,27,46,0.85); color: rgba(255,255,255,0.8); border-radius: 20px; padding: 5px 12px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(8px); border: 1px solid rgba(201,168,76,0.25); transition: opacity 0.4s; }
   .sync-badge.hidden { opacity: 0; pointer-events: none; }
-  .sync-dot {
-    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-    background: #2a9d58;
-    transition: background 0.3s;
-  }
+  .sync-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: #2a9d58; transition: background 0.3s; }
   .sync-dot.syncing { background: var(--yellow); animation: pulse-dot 1s ease-in-out infinite; }
   .sync-dot.error { background: var(--red); }
   @keyframes pulse-dot { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
 
-  .rodadas-bar {
-    background: var(--white);
-    border-bottom: 1px solid var(--gray-100);
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(13,27,46,0.06);
-  }
-  .rodada-btn {
-    background: none; border: none; border-bottom: 3px solid transparent;
-    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
-    color: var(--gray-500); padding: 12px 16px; cursor: pointer;
-    transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
-    white-space: nowrap; display: flex; align-items: center; gap: 5px;
-  }
+  .rodadas-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); display: flex; justify-content: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(13,27,46,0.06); }
+  .rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 16px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
   .rodada-btn.active { color: var(--green-main); border-bottom-color: var(--green-main); }
   .rodada-btn:hover { color: var(--text); }
   .rodada-btn.locked { color: var(--red); opacity: 0.7; }
@@ -97,75 +59,47 @@
   .rodada-panel { display: none; }
   .rodada-panel.active { display: block; }
 
-  .locked-banner {
-    background: linear-gradient(135deg, #fff5f5, #fde8e8);
-    border: 1.5px solid #f5c6c6;
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .locked-banner { background: linear-gradient(135deg, #fff5f5, #fde8e8); border: 1.5px solid #f5c6c6; border-radius: var(--radius); padding: 18px 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
   .locked-banner-icon { font-size: 24px; flex-shrink: 0; }
   .locked-banner-text h3 { font-size: 14px; font-weight: 700; color: var(--red); margin-bottom: 2px; }
   .locked-banner-text p { font-size: 12px; color: #a33; }
+  .panel-locked .score-input { background: var(--gray-100); color: var(--gray-300); cursor: not-allowed; border-color: var(--gray-100); }
+  .panel-locked .game-card { opacity: 0.55; }
 
-  .panel-locked .score-input {
-    background: var(--gray-100);
-    color: var(--gray-300);
-    cursor: not-allowed;
-    border-color: var(--gray-100);
-  }
-  .panel-locked .game-card {
-    opacity: 0.55;
-  }
-
-  .score-card {
-    background: var(--green-light); border: 1.5px solid #c9a84c40;
-    border-radius: var(--radius); padding: 18px 20px; margin-bottom: 20px;
-  }
+  .score-card { background: var(--green-light); border: 1.5px solid #c9a84c40; border-radius: var(--radius); padding: 18px 20px; margin-bottom: 20px; }
   .score-card-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--green-main); text-transform: uppercase; margin-bottom: 12px; }
   .score-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill {
-    background: var(--white); border: 1px solid #c9a84c30; border-radius: 20px;
-    padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text);
-    display: flex; align-items: center; gap: 6px;
-  }
+  .pill { background: var(--white); border: 1px solid #c9a84c30; border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 6px; }
   .pill-pts { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--green-main); }
+
+  /* ARTILHEIRO CARD */
+  .artilheiro-card { background: linear-gradient(135deg, #1a3a5c 0%, #0d1b2e 100%); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); border: 1.5px solid #c9a84c40; }
+  .artilheiro-card .section-label { color: #e8c96a; margin-bottom: 6px; }
+  .artilheiro-card p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 14px; }
+  .artilheiro-card input { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3); color: var(--white); }
+  .artilheiro-card input::placeholder { color: rgba(255,255,255,0.3); }
+  .artilheiro-card input:focus { border-color: var(--yellow); }
+  .artilheiro-card input:disabled { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); cursor: not-allowed; }
+  .artilheiro-locked-note { display: none; font-size: 12px; color: #f5c6c6; margin-top: 8px; align-items: center; gap: 6px; }
+  .artilheiro-locked-note.show { display: flex; }
+  .artilheiro-pts-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 700; color: #e8c96a; margin-bottom: 14px; }
 
   .section-card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
   .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green-main); margin-bottom: 14px; }
   .id-row { display: flex; gap: 12px; align-items: flex-end; }
   .input-group { flex: 1; display: flex; flex-direction: column; gap: 6px; }
   .input-group label { font-size: 12px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; }
-  input[type="text"], input[type="password"], input[type="number"] {
-    border: 1.5px solid var(--gray-300); border-radius: 8px; padding: 10px 14px;
-    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border 0.2s; width: 100%;
-  }
+  input[type="text"], input[type="password"], input[type="number"] { border: 1.5px solid var(--gray-300); border-radius: 8px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border 0.2s; width: 100%; }
   input:focus { border-color: var(--green-main); }
 
-  .btn-save {
-    background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #0d1b2e; border: none;
-    border-radius: 8px; padding: 11px 22px; font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; white-space: nowrap;
-  }
+  .btn-save { background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #0d1b2e; border: none; border-radius: 8px; padding: 11px 22px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; white-space: nowrap; }
   .btn-save:hover { opacity: 0.88; }
   .btn-save:active { transform: scale(0.97); }
   .btn-save:disabled { background: var(--gray-300); color: #fff; cursor: not-allowed; }
 
-  .phase-header {
-    background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); color: var(--white);
-    border-radius: var(--radius); padding: 13px 18px; font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px; letter-spacing: 1px; margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px; border-left: 4px solid #c9a84c;
-  }
+  .phase-header { background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); color: var(--white); border-radius: var(--radius); padding: 13px 18px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-left: 4px solid #c9a84c; }
 
-  .game-card {
-    background: var(--white); border-radius: var(--radius); padding: 14px 16px;
-    margin-bottom: 10px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px;
-    transition: opacity 0.2s;
-  }
+  .game-card { background: var(--white); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; transition: opacity 0.2s; }
   .game-info { flex: 1; min-width: 0; }
   .game-meta { font-size: 10px; color: var(--gray-500); margin-bottom: 8px; font-weight: 500; text-align: center; }
   .game-teams { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
@@ -178,21 +112,11 @@
   .score-input { width: 42px; text-align: center; padding: 8px 4px !important; font-size: 18px !important; font-weight: 700 !important; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .score-sep { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gray-300); }
 
-  .team-flag-img {
-    width: 28px; height: 20px; object-fit: cover; border-radius: 3px;
-    flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15); background: var(--gray-100);
-  }
-  .team-flag-unknown {
-    width: 28px; height: 20px; border-radius: 3px; flex-shrink: 0;
-    background: var(--gray-300); display: flex; align-items: center; justify-content: center;
-    font-size: 11px; color: var(--gray-500);
-  }
+  .team-flag-img { width: 28px; height: 20px; object-fit: cover; border-radius: 3px; flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15); background: var(--gray-100); }
+  .team-flag-unknown { width: 28px; height: 20px; border-radius: 3px; flex-shrink: 0; background: var(--gray-300); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-500); }
 
   .ranking-table { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-  .ranking-row {
-    display: flex; align-items: center; padding: 14px 18px;
-    border-bottom: 1px solid var(--gray-100); transition: background 0.15s; gap: 14px;
-  }
+  .ranking-row { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--gray-100); transition: background 0.15s; gap: 14px; }
   .ranking-row:last-child { border-bottom: none; }
   .ranking-row:hover { background: #c9a84c08; }
   .rank-pos { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gray-300); width: 30px; text-align: center; flex-shrink: 0; }
@@ -203,12 +127,9 @@
   .rank-pts { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--green-main); }
   .rank-pts-label { font-size: 11px; color: var(--gray-500); font-weight: 500; }
   .rank-detail { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+  .rank-artilheiro { font-size: 11px; color: #c9a84c; font-weight: 700; margin-top: 2px; }
   .ranking-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-  .btn-refresh {
-    background: none; border: 1.5px solid var(--green-main); color: var(--green-main);
-    border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
-  }
+  .btn-refresh { background: none; border: 1.5px solid var(--green-main); color: var(--green-main); border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
   .btn-refresh:hover { background: #c9a84c15; }
 
   .admin-lock { background: var(--white); border-radius: var(--radius); padding: 32px 24px; box-shadow: var(--shadow); max-width: 400px; margin: 0 auto; text-align: center; }
@@ -221,48 +142,24 @@
   .result-teams { flex: 1; font-weight: 600; font-size: 14px; }
   .result-meta { font-size: 11px; color: var(--gray-500); font-weight: 400; }
 
-  .phase-control-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow);
-  }
+  .phase-control-card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
   .phase-control-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
-  .phase-row {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--green-pale); border-radius: 10px; padding: 12px 16px;
-    border: 1.5px solid var(--gray-100); transition: border-color 0.2s;
-  }
+  .phase-row { display: flex; align-items: center; justify-content: space-between; background: var(--green-pale); border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--gray-100); transition: border-color 0.2s; }
   .phase-row.is-locked { background: #fff5f5; border-color: #f5c6c6; }
   .phase-row-info { display: flex; flex-direction: column; gap: 2px; }
   .phase-row-name { font-size: 14px; font-weight: 700; color: var(--text); }
   .phase-row-status { font-size: 11px; font-weight: 600; }
   .phase-row-status.open { color: #2a9d58; }
   .phase-row-status.locked { color: var(--red); }
-  .btn-phase-toggle {
-    border: none; border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px;
-    white-space: nowrap;
-  }
-  .btn-phase-toggle.btn-lock {
-    background: #fff0f0; color: var(--red); border: 1.5px solid #f5c6c6;
-  }
+  .btn-phase-toggle { border: none; border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .btn-phase-toggle.btn-lock { background: #fff0f0; color: var(--red); border: 1.5px solid #f5c6c6; }
   .btn-phase-toggle.btn-lock:hover { background: #fde8e8; }
-  .btn-phase-toggle.btn-unlock {
-    background: #f0faf4; color: #2a9d58; border: 1.5px solid #b7e5c8;
-  }
+  .btn-phase-toggle.btn-unlock { background: #f0faf4; color: #2a9d58; border: 1.5px solid #b7e5c8; }
   .btn-phase-toggle.btn-unlock:hover { background: #d9f2e4; }
   .btn-phase-toggle:disabled { opacity: 0.5; cursor: not-allowed; }
-  .phase-control-note {
-    font-size: 11px; color: var(--gray-500); margin-top: 10px;
-    padding: 8px 12px; background: var(--gray-100); border-radius: 6px;
-    display: flex; align-items: flex-start; gap: 6px;
-  }
+  .phase-control-note { font-size: 11px; color: var(--gray-500); margin-top: 10px; padding: 8px 12px; background: var(--gray-100); border-radius: 6px; display: flex; align-items: flex-start; gap: 6px; }
 
-  .toast {
-    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: #0d1b2e; color: var(--white); padding: 14px 24px; border-radius: 50px;
-    font-size: 14px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    z-index: 9999; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); text-align: center; border: 1px solid #c9a84c40;
-  }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #0d1b2e; color: var(--white); padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.25); z-index: 9999; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); text-align: center; border: 1px solid #c9a84c40; }
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.error { background: var(--red); }
 
@@ -291,7 +188,6 @@
 </head>
 <body>
 
-<!-- SYNC STATUS BADGE -->
 <div class="sync-badge hidden" id="syncBadge">
   <div class="sync-dot" id="syncDot"></div>
   <span id="syncLabel">Sincronizado</span>
@@ -320,7 +216,6 @@
 </div>
 
 <div class="main">
-
   <div class="tab active" id="tab-palpitar">
 
     <div class="score-card">
@@ -330,7 +225,22 @@
         <div class="pill"><span class="pill-pts">10</span> ✅ Vencedor + gols de 1 time</div>
         <div class="pill"><span class="pill-pts">5</span> 🔥 Só o resultado certo</div>
         <div class="pill"><span class="pill-pts">2</span> 〰️ 1 placar certo, errou resultado</div>
+        <div class="pill"><span class="pill-pts">30</span> 🥅 Artilheiro do torneio</div>
         <div class="pill"><span class="pill-pts">0</span> ❌ Errou tudo</div>
+      </div>
+    </div>
+
+    <!-- ARTILHEIRO CARD -->
+    <div class="artilheiro-card" id="artilheiroCard">
+      <div class="section-label">🥅 Artilheiro do Torneio</div>
+      <div class="artilheiro-pts-badge">+30 pontos se acertar</div>
+      <p>Quem vai ser o artilheiro da Copa 2026? Trava junto com a Rodada 1.</p>
+      <div class="input-group">
+        <label style="color:rgba(255,255,255,0.5)">Nome do jogador</label>
+        <input type="text" id="artilheiroInput" placeholder="Ex: Mbappé" autocomplete="off">
+      </div>
+      <div class="artilheiro-locked-note" id="artilheiroLockedNote">
+        🔒 Palpite de artilheiro encerrado — Rodada 1 já começou.
       </div>
     </div>
 
@@ -345,19 +255,10 @@
       </div>
     </div>
 
-    <div class="rodada-panel active" id="panel-r1">
-      <div id="jogosR1"></div>
-    </div>
-    <div class="rodada-panel" id="panel-r2">
-      <div id="jogosR2"></div>
-    </div>
-    <div class="rodada-panel" id="panel-r3">
-      <div id="jogosR3"></div>
-    </div>
-    <div class="rodada-panel" id="panel-mata">
-      <div id="jogosMata"></div>
-    </div>
-
+    <div class="rodada-panel active" id="panel-r1"><div id="jogosR1"></div></div>
+    <div class="rodada-panel" id="panel-r2"><div id="jogosR2"></div></div>
+    <div class="rodada-panel" id="panel-r3"><div id="jogosR3"></div></div>
+    <div class="rodada-panel" id="panel-mata"><div id="jogosMata"></div></div>
   </div>
 
   <div class="tab" id="tab-ranking">
@@ -388,14 +289,25 @@
         <button class="btn-danger" onclick="adminLogout()">Sair</button>
       </div>
 
+      <!-- PHASE CONTROL -->
       <div class="phase-control-card">
         <div class="section-label" style="margin:0">🔒 Controle de Fases</div>
         <div class="phase-control-grid" id="phaseControlGrid"></div>
-        <div class="phase-control-note">
-          ℹ️ Fases travadas não aceitam novos palpites. Trave cada rodada assim que os jogos começarem.
-        </div>
+        <div class="phase-control-note">ℹ️ Fases travadas não aceitam novos palpites. Trave cada rodada assim que os jogos começarem.</div>
       </div>
 
+      <!-- ARTILHEIRO REAL -->
+      <div class="section-card">
+        <div class="section-label">🥅 Definir Artilheiro Real</div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px">Preencha ao final do torneio para distribuir os 30 pontos extras.</p>
+        <div class="input-group" style="margin-bottom:14px">
+          <label>Nome do artilheiro</label>
+          <input type="text" id="artilheiroRealInput" placeholder="Ex: Mbappé">
+        </div>
+        <button class="btn-save" style="width:100%" onclick="saveArtilheiroReal()">💾 Salvar Artilheiro</button>
+      </div>
+
+      <!-- RESULTADOS -->
       <div class="flex items-center justify-between" style="margin-bottom:8px">
         <div class="section-label" style="margin:0">📋 Lançar Resultados</div>
       </div>
@@ -404,7 +316,6 @@
       <button class="btn-save mt-16" style="width:100%" onclick="saveResultados()">💾 Salvar Resultados</button>
     </div>
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -413,15 +324,12 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzKrB47HS6jKAdGvHAXzhLZ08RCCRddKjLUXN_OeVzbVRwGbkDrbvO4t1cD8iJT4mAIdA/exec';
 
 const FASE_NAMES = { r1: 'Rodada 1', r2: 'Rodada 2', r3: 'Rodada 3', mata: 'Mata-mata' };
-
 let faseStatus = { r1: false, r2: false, r3: false, mata: false };
 let pollingInterval = null;
 let lastSyncOk = false;
 
 // ─── SYNC BADGE ───────────────────────────────────────────────────────────────
-
 function setSyncState(state) {
-  // state: 'syncing' | 'ok' | 'error' | 'hidden'
   const badge = document.getElementById('syncBadge');
   const dot   = document.getElementById('syncDot');
   const label = document.getElementById('syncLabel');
@@ -430,7 +338,6 @@ function setSyncState(state) {
   dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
   label.textContent = state === 'syncing' ? 'Sincronizando…' : state === 'error' ? 'Sem conexão' : 'Ao vivo';
   if (state === 'ok') {
-    // Hide badge after 3s when OK
     clearTimeout(badge._hideTimer);
     badge._hideTimer = setTimeout(() => badge.classList.add('hidden'), 3000);
   }
@@ -571,14 +478,12 @@ const JOGOS_MATA = [
   {id:'X001',fase:'Final',grupo:'Final',time1:'A definir',time2:'A definir',data:'19/07'},
 ];
 const JOGOS = [...JOGOS_R1, ...JOGOS_R2, ...JOGOS_R3, ...JOGOS_MATA];
-const RODADA_JOGOS = { r1: JOGOS_R1, r2: JOGOS_R2, r3: JOGOS_R3, mata: JOGOS_MATA };
 
 let palpitesLocais = {};
 let adminLoggedIn = false;
 let resultadosAdmin = {};
 
 // ─── PHASE LOCK/UNLOCK ────────────────────────────────────────────────────────
-
 async function fetchFaseStatus() {
   setSyncState('syncing');
   try {
@@ -604,15 +509,12 @@ async function fetchFaseStatus() {
 }
 
 async function loadFaseStatus() {
-  // Load from localStorage immediately so UI is fast
   const saved = localStorage.getItem('bolao_faseStatus');
   if (saved) {
     try { faseStatus = { ...faseStatus, ...JSON.parse(saved) }; } catch(_) {}
     applyFaseStatusUI();
   }
-  // Then fetch from backend to get the real server state
   await fetchFaseStatus();
-  // Start polling every 30s so all users stay in sync
   startPolling();
 }
 
@@ -624,13 +526,11 @@ function startPolling() {
 async function toggleFase(key) {
   const btn = document.getElementById('fase-btn-' + key);
   if (btn) btn.disabled = true;
-
   const newLocked = !faseStatus[key];
   faseStatus[key] = newLocked;
   localStorage.setItem('bolao_faseStatus', JSON.stringify(faseStatus));
   applyFaseStatusUI();
   renderPhaseControlGrid();
-
   setSyncState('syncing');
   try {
     const res = await fetch(SCRIPT_URL, {
@@ -641,14 +541,11 @@ async function toggleFase(key) {
     if (data.success) {
       setSyncState('ok');
       showToast(newLocked ? `🔒 ${FASE_NAMES[key]} travada! Todos verão isso agora.` : `🔓 ${FASE_NAMES[key]} liberada!`);
-    } else {
-      throw new Error(data.error || 'Erro desconhecido');
-    }
+    } else throw new Error(data.error || 'Erro desconhecido');
   } catch (e) {
     setSyncState('error');
-    showToast('⚠️ Salvo localmente, mas falhou no servidor. Verifique o Apps Script.', true);
+    showToast('⚠️ Salvo localmente, mas falhou no servidor.', true);
   }
-
   if (btn) btn.disabled = false;
 }
 
@@ -660,7 +557,6 @@ function applyFaseStatusUI() {
     tabBtn.classList.toggle('locked', isLocked);
     tabBtn.innerHTML = isLocked ? `🔒 ${FASE_NAMES[key]}` : FASE_NAMES[key];
   });
-
   Object.keys(faseStatus).forEach(key => {
     const panel = document.getElementById('panel-' + key);
     if (!panel) return;
@@ -671,12 +567,7 @@ function applyFaseStatusUI() {
       if (!banner) {
         banner = document.createElement('div');
         banner.className = 'locked-banner';
-        banner.innerHTML = `
-          <div class="locked-banner-icon">🔒</div>
-          <div class="locked-banner-text">
-            <h3>Fase encerrada para palpites</h3>
-            <p>Os jogos desta rodada já começaram. Nenhum palpite pode mais ser enviado.</p>
-          </div>`;
+        banner.innerHTML = `<div class="locked-banner-icon">🔒</div><div class="locked-banner-text"><h3>Fase encerrada para palpites</h3><p>Os jogos desta rodada já começaram. Nenhum palpite pode mais ser enviado.</p></div>`;
         panel.insertBefore(banner, panel.firstChild);
       }
       panel.querySelectorAll('.score-input').forEach(inp => { inp.disabled = true; inp.setAttribute('readonly', true); });
@@ -686,6 +577,17 @@ function applyFaseStatusUI() {
       panel.querySelectorAll('.score-input').forEach(inp => { inp.disabled = false; inp.removeAttribute('readonly'); });
     }
   });
+
+  // Travar artilheiro junto com Rodada 1
+  const artInput = document.getElementById('artilheiroInput');
+  const artNote  = document.getElementById('artilheiroLockedNote');
+  if (faseStatus.r1) {
+    artInput.disabled = true;
+    artNote.classList.add('show');
+  } else {
+    artInput.disabled = false;
+    artNote.classList.remove('show');
+  }
 }
 
 function renderPhaseControlGrid() {
@@ -698,9 +600,7 @@ function renderPhaseControlGrid() {
     <div class="phase-row ${locked ? 'is-locked' : ''}">
       <div class="phase-row-info">
         <div class="phase-row-name">${locked ? '🔒' : '🔓'} ${FASE_NAMES[key]}</div>
-        <div class="phase-row-status ${locked ? 'locked' : 'open'}">
-          ${locked ? 'Travada — palpites encerrados' : 'Aberta — palpites permitidos'}
-        </div>
+        <div class="phase-row-status ${locked ? 'locked' : 'open'}">${locked ? 'Travada — palpites encerrados' : 'Aberta — palpites permitidos'}</div>
       </div>
       <button id="fase-btn-${key}" class="btn-phase-toggle ${locked ? 'btn-unlock' : 'btn-lock'}" onclick="toggleFase('${key}')">
         ${locked ? '🔓 Liberar' : '🔒 Travar'}
@@ -711,7 +611,6 @@ function renderPhaseControlGrid() {
 }
 
 // ─── TABS & ROUNDS ────────────────────────────────────────────────────────────
-
 function showTab(tab, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -719,7 +618,7 @@ function showTab(tab, btn) {
   btn.classList.add('active');
   document.getElementById('rodadasBar').style.display = tab === 'palpitar' ? 'flex' : 'none';
   if (tab === 'ranking') loadRanking();
-  if (tab === 'admin' && adminLoggedIn) { loadAdminJogos(); renderPhaseControlGrid(); }
+  if (tab === 'admin' && adminLoggedIn) { loadAdminJogos(); renderPhaseControlGrid(); loadArtilheiroReal(); }
 }
 
 function showRodada(rodada, btn) {
@@ -730,7 +629,6 @@ function showRodada(rodada, btn) {
 }
 
 // ─── GAME CARDS ───────────────────────────────────────────────────────────────
-
 function buildGameCard(j) {
   const p = palpitesLocais[j.id] || { t1: '', t2: '' };
   return `
@@ -793,6 +691,7 @@ function getFaseByJobId(jogoId) {
 async function savePalpites() {
   const name = document.getElementById('playerName').value.trim();
   if (!name) { showToast('Digite seu nome antes de salvar!', true); return; }
+
   const entries = [];
   JOGOS.forEach(j => {
     const fase = getFaseByJobId(j.id);
@@ -803,23 +702,72 @@ async function savePalpites() {
       entries.push({ jogoId: j.id, time1: j.time1, time2: j.time2, placar1: v1, placar2: v2 });
     }
   });
-  if (!entries.length) { showToast('Preencha pelo menos um palpite em fase aberta!', true); return; }
+
+  const artilheiro = document.getElementById('artilheiroInput').value.trim();
+  const artilheiroLocked = faseStatus.r1;
+
+  if (!entries.length && (!artilheiro || artilheiroLocked)) {
+    showToast('Preencha pelo menos um palpite em fase aberta!', true); return;
+  }
+
   const btn = document.querySelector('[onclick="savePalpites()"]');
   btn.disabled = true; btn.textContent = 'Salvando...';
+
   try {
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'savePalpites', nome: name, palpites: entries })
-    });
-    const data = await res.json();
-    if (data.success) showToast('✅ Palpites salvos com sucesso!');
-    else showToast('Erro: ' + (data.error || 'Tente novamente'), true);
-  } catch (e) { showToast('Erro de conexão. Verifique o script.', true); }
+    // Salvar palpites de jogos
+    if (entries.length) {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'savePalpites', nome: name, palpites: entries })
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || 'Erro ao salvar palpites');
+    }
+
+    // Salvar artilheiro (só se não travado e preenchido)
+    if (artilheiro && !artilheiroLocked) {
+      const res2 = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'saveArtilheiro', nome: name, jogador: artilheiro })
+      });
+      const data2 = await res2.json();
+      if (!data2.success) throw new Error(data2.error || 'Erro ao salvar artilheiro');
+    }
+
+    showToast('✅ Palpites salvos com sucesso!');
+  } catch (e) {
+    showToast('Erro: ' + e.message, true);
+  }
+
   btn.disabled = false; btn.textContent = 'Salvar palpites';
 }
 
-// ─── RANKING ──────────────────────────────────────────────────────────────────
+// ─── ARTILHEIRO ADMIN ─────────────────────────────────────────────────────────
+async function loadArtilheiroReal() {
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=getArtilheiro&t=' + Date.now());
+    const data = await res.json();
+    if (data.artilheiro) {
+      document.getElementById('artilheiroRealInput').value = data.artilheiro;
+    }
+  } catch(e) {}
+}
 
+async function saveArtilheiroReal() {
+  const jogador = document.getElementById('artilheiroRealInput').value.trim();
+  if (!jogador) { showToast('Digite o nome do artilheiro!', true); return; }
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'setArtilheiro', jogador })
+    });
+    const data = await res.json();
+    if (data.success) showToast('🥅 Artilheiro salvo! Pontos distribuídos no ranking.');
+    else showToast('Erro: ' + (data.error || 'Tente novamente'), true);
+  } catch(e) { showToast('Erro de conexão.', true); }
+}
+
+// ─── RANKING ──────────────────────────────────────────────────────────────────
 async function loadRanking() {
   const c = document.getElementById('rankingContainer');
   c.innerHTML = '<div class="loading"><div class="spinner"></div>Calculando ranking...</div>';
@@ -842,6 +790,7 @@ function renderRanking(ranking) {
       <div style="flex:1">
         <div class="rank-name">${p.nome}</div>
         <div class="rank-detail">${p.acertos || 0} acertos · ${p.jogos || 0} palpites</div>
+        ${p.artilheiro ? `<div class="rank-artilheiro">🥅 Acertou o artilheiro +30pts</div>` : ''}
       </div>
       <div style="text-align:right">
         <div class="rank-pts">${p.pontos}</div>
@@ -854,7 +803,6 @@ function renderRanking(ranking) {
 }
 
 // ─── ADMIN ────────────────────────────────────────────────────────────────────
-
 async function adminLogin() {
   const pass = document.getElementById('adminPass').value;
   try {
@@ -866,6 +814,7 @@ async function adminLogin() {
       document.getElementById('adminPanel').classList.add('active');
       renderPhaseControlGrid();
       loadAdminJogos();
+      loadArtilheiroReal();
     } else showToast('Senha incorreta!', true);
   } catch (e) { showToast('Erro de conexão.', true); }
 }
@@ -928,7 +877,6 @@ async function saveResultados() {
 }
 
 // ─── TOAST ────────────────────────────────────────────────────────────────────
-
 function showToast(msg, isError = false) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -939,7 +887,6 @@ function showToast(msg, isError = false) {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-
 renderTodosJogos();
 loadFaseStatus();
 </script>
