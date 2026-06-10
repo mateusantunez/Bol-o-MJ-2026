@@ -25,11 +25,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--green-pale); color: var(--text); min-height: 100vh; }
-  .header {
-    background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%);
-    padding: 18px 24px 0; display: flex; flex-direction: column; align-items: center;
-    border-bottom: 2px solid #c9a84c40;
-  }
+  .header { background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); padding: 18px 24px 0; display: flex; flex-direction: column; align-items: center; border-bottom: 2px solid #c9a84c40; }
   .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
   .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #c9a84c, #e8c96a); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
   .header-title h1 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--white); letter-spacing: 1px; line-height: 1; }
@@ -72,17 +68,27 @@
   .pill { background: var(--white); border: 1px solid #c9a84c30; border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 6px; }
   .pill-pts { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--green-main); }
 
-  /* ARTILHEIRO CARD */
-  .artilheiro-card { background: linear-gradient(135deg, #1a3a5c 0%, #0d1b2e 100%); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); border: 1.5px solid #c9a84c40; }
-  .artilheiro-card .section-label { color: #e8c96a; margin-bottom: 6px; }
-  .artilheiro-card p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 14px; }
-  .artilheiro-card input { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3); color: var(--white); }
-  .artilheiro-card input::placeholder { color: rgba(255,255,255,0.3); }
-  .artilheiro-card input:focus { border-color: var(--yellow); }
-  .artilheiro-card input:disabled { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); cursor: not-allowed; }
-  .artilheiro-locked-note { display: none; font-size: 12px; color: #f5c6c6; margin-top: 8px; align-items: center; gap: 6px; }
-  .artilheiro-locked-note.show { display: flex; }
-  .artilheiro-pts-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 700; color: #e8c96a; margin-bottom: 14px; }
+  /* ESPECIAIS TAB */
+  .especiais-header { background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 20px; box-shadow: var(--shadow); border: 1.5px solid #c9a84c40; text-align: center; }
+  .especiais-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--white); letter-spacing: 1px; margin-bottom: 6px; }
+  .especiais-header p { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  .especial-section-label { display: flex; align-items: center; gap: 8px; margin: 24px 0 12px; }
+  .especial-section-label span { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-500); }
+  .especial-section-label::before, .especial-section-label::after { content:''; flex:1; height:1px; background: var(--gray-100); }
+
+  .bonus-card { background: linear-gradient(135deg, #1a3a5c 0%, #0d1b2e 100%); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; box-shadow: var(--shadow); border: 1.5px solid #c9a84c40; }
+  .bonus-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .bonus-card-title { font-size: 15px; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 8px; }
+  .bonus-pts-badge { font-family: 'Bebas Neue', sans-serif; font-size: 18px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 3px 12px; color: #e8c96a; }
+  .bonus-card p { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+  .bonus-card input[type="text"] { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.3); color: var(--white); }
+  .bonus-card input[type="text"]::placeholder { color: rgba(255,255,255,0.3); }
+  .bonus-card input[type="text"]:focus { border-color: var(--yellow); }
+  .bonus-card input[type="text"]:disabled { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); cursor: not-allowed; }
+  .bonus-card label { color: rgba(255,255,255,0.5) !important; }
+  .bonus-locked-note { display: none; font-size: 12px; color: #f5c6c6; margin-top: 8px; align-items: center; gap: 6px; }
+  .bonus-locked-note.show { display: flex; }
 
   .section-card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
   .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green-main); margin-bottom: 14px; }
@@ -98,7 +104,6 @@
   .btn-save:disabled { background: var(--gray-300); color: #fff; cursor: not-allowed; }
 
   .phase-header { background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); color: var(--white); border-radius: var(--radius); padding: 13px 18px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-left: 4px solid #c9a84c; }
-
   .game-card { background: var(--white); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; transition: opacity 0.2s; }
   .game-info { flex: 1; min-width: 0; }
   .game-meta { font-size: 10px; color: var(--gray-500); margin-bottom: 8px; font-weight: 500; text-align: center; }
@@ -111,7 +116,6 @@
   .game-inputs { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
   .score-input { width: 42px; text-align: center; padding: 8px 4px !important; font-size: 18px !important; font-weight: 700 !important; transition: background 0.2s, color 0.2s, border-color 0.2s; }
   .score-sep { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gray-300); }
-
   .team-flag-img { width: 28px; height: 20px; object-fit: cover; border-radius: 3px; flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15); background: var(--gray-100); }
   .team-flag-unknown { width: 28px; height: 20px; border-radius: 3px; flex-shrink: 0; background: var(--gray-300); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-500); }
 
@@ -127,7 +131,7 @@
   .rank-pts { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--green-main); }
   .rank-pts-label { font-size: 11px; color: var(--gray-500); font-weight: 500; }
   .rank-detail { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
-  .rank-artilheiro { font-size: 11px; color: #c9a84c; font-weight: 700; margin-top: 2px; }
+  .rank-bonus { font-size: 11px; color: #c9a84c; font-weight: 700; margin-top: 2px; }
   .ranking-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .btn-refresh { background: none; border: 1.5px solid var(--green-main); color: var(--green-main); border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
   .btn-refresh:hover { background: #c9a84c15; }
@@ -157,7 +161,7 @@
   .btn-phase-toggle.btn-unlock { background: #f0faf4; color: #2a9d58; border: 1.5px solid #b7e5c8; }
   .btn-phase-toggle.btn-unlock:hover { background: #d9f2e4; }
   .btn-phase-toggle:disabled { opacity: 0.5; cursor: not-allowed; }
-  .phase-control-note { font-size: 11px; color: var(--gray-500); margin-top: 10px; padding: 8px 12px; background: var(--gray-100); border-radius: 6px; display: flex; align-items: flex-start; gap: 6px; }
+  .phase-control-note { font-size: 11px; color: var(--gray-500); margin-top: 10px; padding: 8px 12px; background: var(--gray-100); border-radius: 6px; }
 
   .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #0d1b2e; color: var(--white); padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.25); z-index: 9999; transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); text-align: center; border: 1px solid #c9a84c40; }
   .toast.show { transform: translateX(-50%) translateY(0); }
@@ -169,7 +173,6 @@
   .empty { text-align: center; padding: 40px; color: var(--gray-500); font-size: 14px; }
   .btn-danger { background: none; border: 1.5px solid var(--red); color: var(--red); border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
   .btn-danger:hover { background: #fde8e8; }
-
   .mt-16 { margin-top: 16px; }
   .mb-12 { margin-bottom: 12px; }
   .flex { display: flex; }
@@ -183,6 +186,7 @@
     .game-inputs { align-self: center; }
     .rodada-btn { padding: 12px 10px; font-size: 11px; }
     .team-name { font-size: 12px; }
+    .nav-btn { font-size: 11px; }
   }
 </style>
 </head>
@@ -203,6 +207,7 @@
   </div>
   <nav class="nav">
     <button class="nav-btn active" onclick="showTab('palpitar', this)">⚽ Palpitar</button>
+    <button class="nav-btn" onclick="showTab('especiais', this)">⭐ Especiais</button>
     <button class="nav-btn" onclick="showTab('ranking', this)">🏆 Ranking</button>
     <button class="nav-btn" onclick="showTab('admin', this)">🔧 Admin</button>
   </nav>
@@ -216,8 +221,9 @@
 </div>
 
 <div class="main">
-  <div class="tab active" id="tab-palpitar">
 
+  <!-- ⚽ PALPITAR -->
+  <div class="tab active" id="tab-palpitar">
     <div class="score-card">
       <div class="score-card-title">Pontuação</div>
       <div class="score-pills">
@@ -225,25 +231,10 @@
         <div class="pill"><span class="pill-pts">10</span> ✅ Vencedor + gols de 1 time</div>
         <div class="pill"><span class="pill-pts">5</span> 🔥 Só o resultado certo</div>
         <div class="pill"><span class="pill-pts">2</span> 〰️ 1 placar certo, errou resultado</div>
-        <div class="pill"><span class="pill-pts">30</span> 🥅 Artilheiro do torneio</div>
+        <div class="pill"><span class="pill-pts">30</span> ⭐ Campeão ou Artilheiro</div>
         <div class="pill"><span class="pill-pts">0</span> ❌ Errou tudo</div>
       </div>
     </div>
-
-    <!-- ARTILHEIRO CARD -->
-    <div class="artilheiro-card" id="artilheiroCard">
-      <div class="section-label">🥅 Artilheiro do Torneio</div>
-      <div class="artilheiro-pts-badge">+30 pontos se acertar</div>
-      <p>Quem vai ser o artilheiro da Copa 2026? Trava junto com a Rodada 1.</p>
-      <div class="input-group">
-        <label style="color:rgba(255,255,255,0.5)">Nome do jogador</label>
-        <input type="text" id="artilheiroInput" placeholder="Ex: Mbappé" autocomplete="off">
-      </div>
-      <div class="artilheiro-locked-note" id="artilheiroLockedNote">
-        🔒 Palpite de artilheiro encerrado — Rodada 1 já começou.
-      </div>
-    </div>
-
     <div class="section-card">
       <div class="section-label">Identificação</div>
       <div class="id-row">
@@ -254,13 +245,64 @@
         <button class="btn-save" onclick="savePalpites()">Salvar palpites</button>
       </div>
     </div>
-
     <div class="rodada-panel active" id="panel-r1"><div id="jogosR1"></div></div>
     <div class="rodada-panel" id="panel-r2"><div id="jogosR2"></div></div>
     <div class="rodada-panel" id="panel-r3"><div id="jogosR3"></div></div>
     <div class="rodada-panel" id="panel-mata"><div id="jogosMata"></div></div>
   </div>
 
+  <!-- ⭐ ESPECIAIS -->
+  <div class="tab" id="tab-especiais">
+
+    <div class="especiais-header">
+      <h2>⭐ Palpites Especiais</h2>
+      <p>Campeão e Artilheiro do torneio — 30 pontos cada · Travam com a Rodada 1</p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">Identificação</div>
+      <div class="id-row">
+        <div class="input-group">
+          <label>Seu nome</label>
+          <input type="text" id="playerNameEspeciais" placeholder="Ex: João Silva" autocomplete="off">
+        </div>
+        <button class="btn-save" onclick="saveEspeciais()">Salvar especiais</button>
+      </div>
+    </div>
+
+    <div class="especial-section-label"><span>Trava com a Rodada 1</span></div>
+
+    <!-- CAMPEÃO -->
+    <div class="bonus-card">
+      <div class="bonus-card-header">
+        <div class="bonus-card-title">🏆 Campeão do Torneio</div>
+        <div class="bonus-pts-badge">+30 pts</div>
+      </div>
+      <p>Qual seleção vai levantar a taça em 19 de julho?</p>
+      <div class="input-group">
+        <label>Nome da seleção</label>
+        <input type="text" id="campeaoInput" placeholder="Ex: Brasil" autocomplete="off">
+      </div>
+      <div class="bonus-locked-note" id="campeaoLockedNote">🔒 Palpite encerrado — Rodada 1 já começou.</div>
+    </div>
+
+    <!-- ARTILHEIRO -->
+    <div class="bonus-card">
+      <div class="bonus-card-header">
+        <div class="bonus-card-title">🥅 Artilheiro do Torneio</div>
+        <div class="bonus-pts-badge">+30 pts</div>
+      </div>
+      <p>Quem vai ser o artilheiro da Copa 2026?</p>
+      <div class="input-group">
+        <label>Nome do jogador</label>
+        <input type="text" id="artilheiroInput" placeholder="Ex: Mbappé" autocomplete="off">
+      </div>
+      <div class="bonus-locked-note" id="artilheiroLockedNote">🔒 Palpite encerrado — Rodada 1 já começou.</div>
+    </div>
+
+  </div>
+
+  <!-- 🏆 RANKING -->
   <div class="tab" id="tab-ranking">
     <div class="ranking-header">
       <div class="section-label" style="margin:0">Classificação</div>
@@ -271,6 +313,7 @@
     </div>
   </div>
 
+  <!-- 🔧 ADMIN -->
   <div class="tab" id="tab-admin">
     <div class="admin-lock" id="adminLock">
       <div style="font-size:36px;margin-bottom:12px">🔐</div>
@@ -289,17 +332,27 @@
         <button class="btn-danger" onclick="adminLogout()">Sair</button>
       </div>
 
-      <!-- PHASE CONTROL -->
       <div class="phase-control-card">
         <div class="section-label" style="margin:0">🔒 Controle de Fases</div>
         <div class="phase-control-grid" id="phaseControlGrid"></div>
         <div class="phase-control-note">ℹ️ Fases travadas não aceitam novos palpites. Trave cada rodada assim que os jogos começarem.</div>
       </div>
 
-      <!-- ARTILHEIRO REAL -->
+      <!-- DEFINIR CAMPEÃO REAL -->
+      <div class="section-card">
+        <div class="section-label">🏆 Definir Campeão Real</div>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px">Preencha ao final do torneio para distribuir os 30 pontos.</p>
+        <div class="input-group" style="margin-bottom:14px">
+          <label>Seleção campeã</label>
+          <input type="text" id="campeaoRealInput" placeholder="Ex: Brasil">
+        </div>
+        <button class="btn-save" style="width:100%" onclick="saveCampeaoReal()">💾 Salvar Campeão</button>
+      </div>
+
+      <!-- DEFINIR ARTILHEIRO REAL -->
       <div class="section-card">
         <div class="section-label">🥅 Definir Artilheiro Real</div>
-        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px">Preencha ao final do torneio para distribuir os 30 pontos extras.</p>
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px">Preencha ao final do torneio para distribuir os 30 pontos.</p>
         <div class="input-group" style="margin-bottom:14px">
           <label>Nome do artilheiro</label>
           <input type="text" id="artilheiroRealInput" placeholder="Ex: Mbappé">
@@ -316,6 +369,7 @@
       <button class="btn-save mt-16" style="width:100%" onclick="saveResultados()">💾 Salvar Resultados</button>
     </div>
   </div>
+
 </div>
 
 <div class="toast" id="toast"></div>
@@ -328,7 +382,6 @@ let faseStatus = { r1: false, r2: false, r3: false, mata: false };
 let pollingInterval = null;
 let lastSyncOk = false;
 
-// ─── SYNC BADGE ───────────────────────────────────────────────────────────────
 function setSyncState(state) {
   const badge = document.getElementById('syncBadge');
   const dot   = document.getElementById('syncDot');
@@ -337,13 +390,9 @@ function setSyncState(state) {
   badge.classList.remove('hidden');
   dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
   label.textContent = state === 'syncing' ? 'Sincronizando…' : state === 'error' ? 'Sem conexão' : 'Ao vivo';
-  if (state === 'ok') {
-    clearTimeout(badge._hideTimer);
-    badge._hideTimer = setTimeout(() => badge.classList.add('hidden'), 3000);
-  }
+  if (state === 'ok') { clearTimeout(badge._hideTimer); badge._hideTimer = setTimeout(() => badge.classList.add('hidden'), 3000); }
 }
 
-// ─── FLAGS ────────────────────────────────────────────────────────────────────
 const FLAG_CODES = {
   'México':'mx','África do Sul':'za','Coreia do Sul':'kr','Rep. Tcheca':'cz',
   'Canadá':'ca','Bósnia':'ba','Catar':'qa','Suíça':'ch','Brasil':'br',
@@ -364,7 +413,6 @@ function flagHTML(team) {
   return `<img class="team-flag-img" src="https://flagcdn.com/w40/${code}.png" alt="${team}" loading="lazy">`;
 }
 
-// ─── GAMES DATA ───────────────────────────────────────────────────────────────
 const JOGOS_R1 = [
   {id:'A001',fase:'Fase de Grupos',grupo:'Grupo A',time1:'México',time2:'África do Sul',data:'11/06'},
   {id:'A002',fase:'Fase de Grupos',grupo:'Grupo A',time1:'Coreia do Sul',time2:'Rep. Tcheca',data:'11/06'},
@@ -483,7 +531,7 @@ let palpitesLocais = {};
 let adminLoggedIn = false;
 let resultadosAdmin = {};
 
-// ─── PHASE LOCK/UNLOCK ────────────────────────────────────────────────────────
+// ─── SYNC ─────────────────────────────────────────────────────────────────────
 async function fetchFaseStatus() {
   setSyncState('syncing');
   try {
@@ -493,32 +541,17 @@ async function fetchFaseStatus() {
       const prev = JSON.stringify(faseStatus);
       faseStatus = { ...faseStatus, ...data.faseStatus };
       localStorage.setItem('bolao_faseStatus', JSON.stringify(faseStatus));
-      if (JSON.stringify(faseStatus) !== prev) {
-        applyFaseStatusUI();
-        if (adminLoggedIn) renderPhaseControlGrid();
-      }
-      setSyncState('ok');
-      lastSyncOk = true;
-      return true;
+      if (JSON.stringify(faseStatus) !== prev) { applyFaseStatusUI(); if (adminLoggedIn) renderPhaseControlGrid(); }
+      setSyncState('ok'); lastSyncOk = true; return true;
     }
-  } catch (e) {
-    setSyncState('error');
-    lastSyncOk = false;
-  }
+  } catch (e) { setSyncState('error'); lastSyncOk = false; }
   return false;
 }
 
 async function loadFaseStatus() {
   const saved = localStorage.getItem('bolao_faseStatus');
-  if (saved) {
-    try { faseStatus = { ...faseStatus, ...JSON.parse(saved) }; } catch(_) {}
-    applyFaseStatusUI();
-  }
+  if (saved) { try { faseStatus = { ...faseStatus, ...JSON.parse(saved) }; } catch(_) {} applyFaseStatusUI(); }
   await fetchFaseStatus();
-  startPolling();
-}
-
-function startPolling() {
   if (pollingInterval) clearInterval(pollingInterval);
   pollingInterval = setInterval(fetchFaseStatus, 30000);
 }
@@ -526,26 +559,15 @@ function startPolling() {
 async function toggleFase(key) {
   const btn = document.getElementById('fase-btn-' + key);
   if (btn) btn.disabled = true;
-  const newLocked = !faseStatus[key];
-  faseStatus[key] = newLocked;
+  faseStatus[key] = !faseStatus[key];
   localStorage.setItem('bolao_faseStatus', JSON.stringify(faseStatus));
-  applyFaseStatusUI();
-  renderPhaseControlGrid();
-  setSyncState('syncing');
+  applyFaseStatusUI(); renderPhaseControlGrid(); setSyncState('syncing');
   try {
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'setFaseStatus', faseStatus })
-    });
+    const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action: 'setFaseStatus', faseStatus }) });
     const data = await res.json();
-    if (data.success) {
-      setSyncState('ok');
-      showToast(newLocked ? `🔒 ${FASE_NAMES[key]} travada! Todos verão isso agora.` : `🔓 ${FASE_NAMES[key]} liberada!`);
-    } else throw new Error(data.error || 'Erro desconhecido');
-  } catch (e) {
-    setSyncState('error');
-    showToast('⚠️ Salvo localmente, mas falhou no servidor.', true);
-  }
+    if (data.success) { setSyncState('ok'); showToast(faseStatus[key] ? `🔒 ${FASE_NAMES[key]} travada!` : `🔓 ${FASE_NAMES[key]} liberada!`); }
+    else throw new Error(data.error);
+  } catch (e) { setSyncState('error'); showToast('⚠️ Falhou no servidor.', true); }
   if (btn) btn.disabled = false;
 }
 
@@ -553,41 +575,34 @@ function applyFaseStatusUI() {
   Object.keys(faseStatus).forEach(key => {
     const tabBtn = document.getElementById('tab-btn-' + key);
     if (!tabBtn) return;
-    const isLocked = faseStatus[key];
-    tabBtn.classList.toggle('locked', isLocked);
-    tabBtn.innerHTML = isLocked ? `🔒 ${FASE_NAMES[key]}` : FASE_NAMES[key];
+    tabBtn.classList.toggle('locked', faseStatus[key]);
+    tabBtn.innerHTML = faseStatus[key] ? `🔒 ${FASE_NAMES[key]}` : FASE_NAMES[key];
   });
   Object.keys(faseStatus).forEach(key => {
     const panel = document.getElementById('panel-' + key);
     if (!panel) return;
-    const isLocked = faseStatus[key];
     let banner = panel.querySelector('.locked-banner');
-    if (isLocked) {
+    if (faseStatus[key]) {
       panel.classList.add('panel-locked');
       if (!banner) {
-        banner = document.createElement('div');
-        banner.className = 'locked-banner';
-        banner.innerHTML = `<div class="locked-banner-icon">🔒</div><div class="locked-banner-text"><h3>Fase encerrada para palpites</h3><p>Os jogos desta rodada já começaram. Nenhum palpite pode mais ser enviado.</p></div>`;
+        banner = document.createElement('div'); banner.className = 'locked-banner';
+        banner.innerHTML = `<div class="locked-banner-icon">🔒</div><div class="locked-banner-text"><h3>Fase encerrada para palpites</h3><p>Os jogos desta rodada já começaram.</p></div>`;
         panel.insertBefore(banner, panel.firstChild);
       }
-      panel.querySelectorAll('.score-input').forEach(inp => { inp.disabled = true; inp.setAttribute('readonly', true); });
+      panel.querySelectorAll('.score-input').forEach(i => { i.disabled = true; i.setAttribute('readonly', true); });
     } else {
-      panel.classList.remove('panel-locked');
-      if (banner) banner.remove();
-      panel.querySelectorAll('.score-input').forEach(inp => { inp.disabled = false; inp.removeAttribute('readonly'); });
+      panel.classList.remove('panel-locked'); if (banner) banner.remove();
+      panel.querySelectorAll('.score-input').forEach(i => { i.disabled = false; i.removeAttribute('readonly'); });
     }
   });
-
-  // Travar artilheiro junto com Rodada 1
-  const artInput = document.getElementById('artilheiroInput');
-  const artNote  = document.getElementById('artilheiroLockedNote');
-  if (faseStatus.r1) {
-    artInput.disabled = true;
-    artNote.classList.add('show');
-  } else {
-    artInput.disabled = false;
-    artNote.classList.remove('show');
-  }
+  // Travar especiais junto com R1
+  const r1Locked = faseStatus.r1;
+  ['campeao','artilheiro'].forEach(tipo => {
+    const inp  = document.getElementById(tipo + 'Input');
+    const note = document.getElementById(tipo + 'LockedNote');
+    if (inp)  inp.disabled = r1Locked;
+    if (note) note.classList.toggle('show', r1Locked);
+  });
 }
 
 function renderPhaseControlGrid() {
@@ -596,11 +611,10 @@ function renderPhaseControlGrid() {
   let html = '';
   Object.keys(FASE_NAMES).forEach(key => {
     const locked = faseStatus[key];
-    html += `
-    <div class="phase-row ${locked ? 'is-locked' : ''}">
+    html += `<div class="phase-row ${locked ? 'is-locked' : ''}">
       <div class="phase-row-info">
         <div class="phase-row-name">${locked ? '🔒' : '🔓'} ${FASE_NAMES[key]}</div>
-        <div class="phase-row-status ${locked ? 'locked' : 'open'}">${locked ? 'Travada — palpites encerrados' : 'Aberta — palpites permitidos'}</div>
+        <div class="phase-row-status ${locked ? 'locked' : 'open'}">${locked ? 'Travada' : 'Aberta'}</div>
       </div>
       <button id="fase-btn-${key}" class="btn-phase-toggle ${locked ? 'btn-unlock' : 'btn-lock'}" onclick="toggleFase('${key}')">
         ${locked ? '🔓 Liberar' : '🔒 Travar'}
@@ -610,7 +624,7 @@ function renderPhaseControlGrid() {
   grid.innerHTML = html;
 }
 
-// ─── TABS & ROUNDS ────────────────────────────────────────────────────────────
+// ─── TABS ────────────────────────────────────────────────────────────────────
 function showTab(tab, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -618,7 +632,7 @@ function showTab(tab, btn) {
   btn.classList.add('active');
   document.getElementById('rodadasBar').style.display = tab === 'palpitar' ? 'flex' : 'none';
   if (tab === 'ranking') loadRanking();
-  if (tab === 'admin' && adminLoggedIn) { loadAdminJogos(); renderPhaseControlGrid(); loadArtilheiroReal(); }
+  if (tab === 'admin' && adminLoggedIn) { loadAdminJogos(); renderPhaseControlGrid(); loadAdminEspeciais(); }
 }
 
 function showRodada(rodada, btn) {
@@ -628,13 +642,12 @@ function showRodada(rodada, btn) {
   btn.classList.add('active');
 }
 
-// ─── GAME CARDS ───────────────────────────────────────────────────────────────
+// ─── GAME CARDS ──────────────────────────────────────────────────────────────
 function buildGameCard(j) {
   const p = palpitesLocais[j.id] || { t1: '', t2: '' };
-  return `
-  <div class="game-card">
+  return `<div class="game-card">
     <div class="game-info">
-      <div class="game-meta">${j.data} &nbsp;·&nbsp; ${j.grupo}</div>
+      <div class="game-meta">${j.data} · ${j.grupo}</div>
       <div class="game-teams">
         <div class="team-block">${flagHTML(j.time1)}<span class="team-name">${j.time1}</span></div>
         <span class="vs-text">VS</span>
@@ -656,141 +669,128 @@ function renderGrupos(jogos, containerId) {
   let html = '';
   for (const grupo in grupos) {
     const isMata = !grupo.startsWith('Grupo');
-    html += isMata
-      ? `<div class="phase-header">🏆 ${grupo.toUpperCase()}</div>`
-      : `<div style="font-size:12px;font-weight:700;color:var(--green-main);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px">${grupo}</div>`;
+    html += isMata ? `<div class="phase-header">🏆 ${grupo.toUpperCase()}</div>` : `<div style="font-size:12px;font-weight:700;color:var(--green-main);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px">${grupo}</div>`;
     grupos[grupo].forEach(j => { html += buildGameCard(j); });
   }
   container.innerHTML = html;
 }
 
 function renderTodosJogos() {
-  renderGrupos(JOGOS_R1, 'jogosR1');
-  renderGrupos(JOGOS_R2, 'jogosR2');
-  renderGrupos(JOGOS_R3, 'jogosR3');
-  renderGrupos(JOGOS_MATA, 'jogosMata');
+  renderGrupos(JOGOS_R1,'jogosR1'); renderGrupos(JOGOS_R2,'jogosR2');
+  renderGrupos(JOGOS_R3,'jogosR3'); renderGrupos(JOGOS_MATA,'jogosMata');
 }
 
 function savePalpiteLocal(jogoId) {
-  const fase = getFaseByJobId(jogoId);
-  if (fase && faseStatus[fase]) return;
-  palpitesLocais[jogoId] = {
-    t1: document.getElementById('p_' + jogoId + '_1').value,
-    t2: document.getElementById('p_' + jogoId + '_2').value
-  };
-}
-
-function getFaseByJobId(jogoId) {
-  if (JOGOS_R1.find(j => j.id === jogoId))   return 'r1';
-  if (JOGOS_R2.find(j => j.id === jogoId))   return 'r2';
-  if (JOGOS_R3.find(j => j.id === jogoId))   return 'r3';
-  if (JOGOS_MATA.find(j => j.id === jogoId)) return 'mata';
-  return null;
+  const fase = JOGOS_R1.find(j=>j.id===jogoId)?'r1':JOGOS_R2.find(j=>j.id===jogoId)?'r2':JOGOS_R3.find(j=>j.id===jogoId)?'r3':'mata';
+  if (faseStatus[fase]) return;
+  palpitesLocais[jogoId] = { t1: document.getElementById('p_'+jogoId+'_1').value, t2: document.getElementById('p_'+jogoId+'_2').value };
 }
 
 async function savePalpites() {
   const name = document.getElementById('playerName').value.trim();
   if (!name) { showToast('Digite seu nome antes de salvar!', true); return; }
-
   const entries = [];
   JOGOS.forEach(j => {
-    const fase = getFaseByJobId(j.id);
-    if (fase && faseStatus[fase]) return;
-    const v1 = document.getElementById('p_' + j.id + '_1')?.value;
-    const v2 = document.getElementById('p_' + j.id + '_2')?.value;
-    if (v1 !== '' && v2 !== '' && v1 !== undefined && v2 !== undefined) {
-      entries.push({ jogoId: j.id, time1: j.time1, time2: j.time2, placar1: v1, placar2: v2 });
-    }
+    const fase = JOGOS_R1.find(x=>x.id===j.id)?'r1':JOGOS_R2.find(x=>x.id===j.id)?'r2':JOGOS_R3.find(x=>x.id===j.id)?'r3':'mata';
+    if (faseStatus[fase]) return;
+    const v1 = document.getElementById('p_'+j.id+'_1')?.value;
+    const v2 = document.getElementById('p_'+j.id+'_2')?.value;
+    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) entries.push({jogoId:j.id,time1:j.time1,time2:j.time2,placar1:v1,placar2:v2});
   });
-
-  const artilheiro = document.getElementById('artilheiroInput').value.trim();
-  const artilheiroLocked = faseStatus.r1;
-
-  if (!entries.length && (!artilheiro || artilheiroLocked)) {
-    showToast('Preencha pelo menos um palpite em fase aberta!', true); return;
-  }
-
+  if (!entries.length) { showToast('Preencha pelo menos um palpite em fase aberta!', true); return; }
   const btn = document.querySelector('[onclick="savePalpites()"]');
   btn.disabled = true; btn.textContent = 'Salvando...';
-
   try {
-    // Salvar palpites de jogos
-    if (entries.length) {
-      const res = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'savePalpites', nome: name, palpites: entries })
-      });
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error || 'Erro ao salvar palpites');
-    }
-
-    // Salvar artilheiro (só se não travado e preenchido)
-    if (artilheiro && !artilheiroLocked) {
-      const res2 = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'saveArtilheiro', nome: name, jogador: artilheiro })
-      });
-      const data2 = await res2.json();
-      if (!data2.success) throw new Error(data2.error || 'Erro ao salvar artilheiro');
-    }
-
-    showToast('✅ Palpites salvos com sucesso!');
-  } catch (e) {
-    showToast('Erro: ' + e.message, true);
-  }
-
+    const res = await fetch(SCRIPT_URL, { method:'POST', body: JSON.stringify({action:'savePalpites',nome:name,palpites:entries}) });
+    const data = await res.json();
+    if (data.success) showToast('✅ Palpites salvos!');
+    else showToast('Erro: '+(data.error||'Tente novamente'), true);
+  } catch(e) { showToast('Erro de conexão.', true); }
   btn.disabled = false; btn.textContent = 'Salvar palpites';
 }
 
-// ─── ARTILHEIRO ADMIN ─────────────────────────────────────────────────────────
-async function loadArtilheiroReal() {
+// ─── ESPECIAIS ────────────────────────────────────────────────────────────────
+async function saveEspeciais() {
+  const name = document.getElementById('playerNameEspeciais').value.trim();
+  if (!name) { showToast('Digite seu nome antes de salvar!', true); return; }
+  const campeao    = document.getElementById('campeaoInput').value.trim();
+  const artilheiro = document.getElementById('artilheiroInput').value.trim();
+  if (!campeao && !artilheiro) { showToast('Preencha ao menos um campo!', true); return; }
+  if (faseStatus.r1) { showToast('Palpites especiais encerrados — Rodada 1 travada.', true); return; }
+  const btn = document.querySelector('[onclick="saveEspeciais()"]');
+  btn.disabled = true; btn.textContent = 'Salvando...';
   try {
-    const res = await fetch(SCRIPT_URL + '?action=getArtilheiro&t=' + Date.now());
-    const data = await res.json();
-    if (data.artilheiro) {
-      document.getElementById('artilheiroRealInput').value = data.artilheiro;
-    }
+    const promises = [];
+    if (campeao)    promises.push(fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'saveCampeao',   nome:name, time:campeao})}));
+    if (artilheiro) promises.push(fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'saveArtilheiro',nome:name, jogador:artilheiro})}));
+    const results = await Promise.all(promises);
+    const jsons   = await Promise.all(results.map(r => r.json()));
+    const allOk   = jsons.every(d => d.success);
+    if (allOk) showToast('✅ Palpites especiais salvos!');
+    else showToast('Erro ao salvar. Tente novamente.', true);
+  } catch(e) { showToast('Erro de conexão.', true); }
+  btn.disabled = false; btn.textContent = 'Salvar especiais';
+}
+
+async function loadAdminEspeciais() {
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch(SCRIPT_URL + '?action=getCampeao&t=' + Date.now()).then(r=>r.json()),
+      fetch(SCRIPT_URL + '?action=getArtilheiro&t=' + Date.now()).then(r=>r.json()),
+    ]);
+    if (r1.campeao)    document.getElementById('campeaoRealInput').value    = r1.campeao;
+    if (r2.artilheiro) document.getElementById('artilheiroRealInput').value = r2.artilheiro;
   } catch(e) {}
+}
+
+async function saveCampeaoReal() {
+  const time = document.getElementById('campeaoRealInput').value.trim();
+  if (!time) { showToast('Digite o nome da seleção campeã!', true); return; }
+  try {
+    const res  = await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'setCampeao', time})});
+    const data = await res.json();
+    if (data.success) showToast('🏆 Campeão salvo! Pontos distribuídos no ranking.');
+    else showToast('Erro: '+(data.error||'Tente novamente'), true);
+  } catch(e) { showToast('Erro de conexão.', true); }
 }
 
 async function saveArtilheiroReal() {
   const jogador = document.getElementById('artilheiroRealInput').value.trim();
   if (!jogador) { showToast('Digite o nome do artilheiro!', true); return; }
   try {
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'setArtilheiro', jogador })
-    });
+    const res  = await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'setArtilheiro', jogador})});
     const data = await res.json();
     if (data.success) showToast('🥅 Artilheiro salvo! Pontos distribuídos no ranking.');
-    else showToast('Erro: ' + (data.error || 'Tente novamente'), true);
+    else showToast('Erro: '+(data.error||'Tente novamente'), true);
   } catch(e) { showToast('Erro de conexão.', true); }
 }
 
-// ─── RANKING ──────────────────────────────────────────────────────────────────
+// ─── RANKING ─────────────────────────────────────────────────────────────────
 async function loadRanking() {
   const c = document.getElementById('rankingContainer');
   c.innerHTML = '<div class="loading"><div class="spinner"></div>Calculando ranking...</div>';
   try {
-    const res = await fetch(SCRIPT_URL + '?action=getRanking');
+    const res  = await fetch(SCRIPT_URL + '?action=getRanking');
     const data = await res.json();
     renderRanking(data.ranking || []);
-  } catch (e) { c.innerHTML = '<div class="empty">Erro ao carregar ranking.</div>'; }
+  } catch(e) { c.innerHTML = '<div class="empty">Erro ao carregar ranking.</div>'; }
 }
 
 function renderRanking(ranking) {
   const c = document.getElementById('rankingContainer');
   if (!ranking.length) { c.innerHTML = '<div class="empty">Nenhum palpite salvo ainda.</div>'; return; }
-  const medals = ['gold', 'silver', 'bronze'];
+  const medals = ['gold','silver','bronze'];
   let html = '<div class="ranking-table">';
   ranking.forEach((p, i) => {
-    html += `
-    <div class="ranking-row">
-      <div class="rank-pos ${medals[i] || ''}">${i + 1}</div>
+    const bonus = [];
+    if (p.campeao)    bonus.push('🏆 Acertou o campeão +30pts');
+    if (p.artilheiro) bonus.push('🥅 Acertou o artilheiro +30pts');
+    html += `<div class="ranking-row">
+      <div class="rank-pos ${medals[i]||''}">${i+1}</div>
       <div style="flex:1">
         <div class="rank-name">${p.nome}</div>
-        <div class="rank-detail">${p.acertos || 0} acertos · ${p.jogos || 0} palpites</div>
-        ${p.artilheiro ? `<div class="rank-artilheiro">🥅 Acertou o artilheiro +30pts</div>` : ''}
+        <div class="rank-detail">${p.acertos||0} acertos · ${p.jogos||0} palpites</div>
+        ${bonus.map(b=>`<div class="rank-bonus">${b}</div>`).join('')}
       </div>
       <div style="text-align:right">
         <div class="rank-pts">${p.pontos}</div>
@@ -802,21 +802,19 @@ function renderRanking(ranking) {
   c.innerHTML = html;
 }
 
-// ─── ADMIN ────────────────────────────────────────────────────────────────────
+// ─── ADMIN ───────────────────────────────────────────────────────────────────
 async function adminLogin() {
   const pass = document.getElementById('adminPass').value;
   try {
-    const res = await fetch(SCRIPT_URL + '?action=adminLogin&pass=' + encodeURIComponent(pass));
+    const res  = await fetch(SCRIPT_URL + '?action=adminLogin&pass=' + encodeURIComponent(pass));
     const data = await res.json();
     if (data.ok) {
       adminLoggedIn = true;
       document.getElementById('adminLock').style.display = 'none';
       document.getElementById('adminPanel').classList.add('active');
-      renderPhaseControlGrid();
-      loadAdminJogos();
-      loadArtilheiroReal();
+      renderPhaseControlGrid(); loadAdminJogos(); loadAdminEspeciais();
     } else showToast('Senha incorreta!', true);
-  } catch (e) { showToast('Erro de conexão.', true); }
+  } catch(e) { showToast('Erro de conexão.', true); }
 }
 
 function adminLogout() {
@@ -830,9 +828,8 @@ function loadAdminJogos() {
   const c = document.getElementById('adminJogosContainer');
   let html = '<div class="results-grid">';
   JOGOS.forEach(j => {
-    const r = resultadosAdmin[j.id] || { t1: '', t2: '' };
-    html += `
-    <div class="result-card">
+    const r = resultadosAdmin[j.id] || {t1:'',t2:''};
+    html += `<div class="result-card">
       <div class="result-teams">
         <div style="display:flex;align-items:center;gap:6px">${flagHTML(j.time1)} ${j.time1} vs ${j.time2} ${flagHTML(j.time2)}</div>
         <div class="result-meta">${j.data} · ${j.grupo}</div>
@@ -849,44 +846,32 @@ function loadAdminJogos() {
 }
 
 function saveResultadoLocal(jogoId) {
-  resultadosAdmin[jogoId] = {
-    t1: document.getElementById('r_' + jogoId + '_1').value,
-    t2: document.getElementById('r_' + jogoId + '_2').value
-  };
+  resultadosAdmin[jogoId] = { t1: document.getElementById('r_'+jogoId+'_1').value, t2: document.getElementById('r_'+jogoId+'_2').value };
 }
 
 async function saveResultados() {
   const entries = [];
   JOGOS.forEach(j => {
-    const v1 = document.getElementById('r_' + j.id + '_1')?.value;
-    const v2 = document.getElementById('r_' + j.id + '_2')?.value;
-    if (v1 !== '' && v2 !== '' && v1 !== undefined && v2 !== undefined) {
-      entries.push({ jogoId: j.id, time1: j.time1, time2: j.time2, placar1: v1, placar2: v2 });
-    }
+    const v1 = document.getElementById('r_'+j.id+'_1')?.value;
+    const v2 = document.getElementById('r_'+j.id+'_2')?.value;
+    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) entries.push({jogoId:j.id,time1:j.time1,time2:j.time2,placar1:v1,placar2:v2});
   });
   if (!entries.length) { showToast('Preencha pelo menos um resultado!', true); return; }
   try {
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'saveResultados', resultados: entries })
-    });
+    const res  = await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'saveResultados',resultados:entries})});
     const data = await res.json();
     if (data.success) showToast('✅ Resultados salvos!');
-    else showToast('Erro: ' + (data.error || 'Tente novamente'), true);
-  } catch (e) { showToast('Erro de conexão.', true); }
+    else showToast('Erro: '+(data.error||'Tente novamente'), true);
+  } catch(e) { showToast('Erro de conexão.', true); }
 }
 
-// ─── TOAST ────────────────────────────────────────────────────────────────────
-function showToast(msg, isError = false) {
+function showToast(msg, isError=false) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast' + (isError ? ' error' : '');
-  void t.offsetWidth;
-  t.classList.add('show');
+  t.textContent = msg; t.className = 'toast'+(isError?' error':'');
+  void t.offsetWidth; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
 renderTodosJogos();
 loadFaseStatus();
 </script>
