@@ -179,6 +179,33 @@
   .items-center { align-items: center; }
   .justify-between { justify-content: space-between; }
 
+  /* PALPITES DE TODOS */
+  .palpites-rodada-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); display: flex; overflow-x: auto; margin-bottom: 20px; border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow); }
+  .palpites-rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 16px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .palpites-rodada-btn.active { color: var(--green-main); border-bottom-color: var(--green-main); }
+  .palpites-rodada-btn:hover { color: var(--text); }
+  .palpites-rodada-panel { display: none; }
+  .palpites-rodada-panel.active { display: block; }
+  .palpites-locked-msg { background: linear-gradient(135deg, #fff5f5, #fde8e8); border: 1.5px solid #f5c6c6; border-radius: var(--radius); padding: 20px; text-align: center; color: var(--red); font-size: 13px; font-weight: 600; }
+  .palpites-group-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green-main); margin: 16px 0 8px; }
+  .palpites-game { background: var(--white); border-radius: var(--radius); margin-bottom: 12px; box-shadow: var(--shadow); overflow: hidden; }
+  .palpites-game-header { background: linear-gradient(135deg, #0d1b2e, #1a3a5c); color: var(--white); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .palpites-game-title { font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
+  .palpites-game-resultado { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--yellow); background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 2px 12px; flex-shrink: 0; }
+  .palpites-game-sem-resultado { font-size: 11px; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+  .palpites-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 16px; border-bottom: 1px solid var(--gray-100); gap: 8px; }
+  .palpites-row:last-child { border-bottom: none; }
+  .palpites-nome { font-size: 13px; font-weight: 500; flex: 1; }
+  .palpites-right { display: flex; align-items: center; gap: 8px; }
+  .palpites-placar { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--text); }
+  .palpites-pts { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .palpites-pts.pts-15 { background: #e8f5e9; color: #2a9d58; }
+  .palpites-pts.pts-10 { background: #e3f2fd; color: #1976d2; }
+  .palpites-pts.pts-5  { background: #fff8e1; color: #f57f17; }
+  .palpites-pts.pts-2  { background: #fce4ec; color: #c62828; }
+  .palpites-pts.pts-0  { background: var(--gray-100); color: var(--gray-500); }
+  .palpites-sem { font-size: 12px; color: var(--gray-300); font-style: italic; }
+
   @media (max-width: 480px) {
     .id-row { flex-direction: column; align-items: stretch; }
     .btn-save { width: 100%; }
@@ -209,6 +236,7 @@
     <button class="nav-btn active" onclick="showTab('palpitar', this)">⚽ Palpitar</button>
     <button class="nav-btn" onclick="showTab('especiais', this)">⭐ Especiais</button>
     <button class="nav-btn" onclick="showTab('ranking', this)">🏆 Ranking</button>
+    <button class="nav-btn" onclick="showTab('palpites', this)">👥 Palpites</button>
     <button class="nav-btn" onclick="showTab('admin', this)">🔧 Admin</button>
   </nav>
 </div>
@@ -311,6 +339,25 @@
     <div id="rankingContainer">
       <div class="loading"><div class="spinner"></div>Carregando ranking...</div>
     </div>
+  </div>
+
+  <!-- 👥 PALPITES DE TODOS -->
+  <div class="tab" id="tab-palpites">
+    <div class="ranking-header">
+      <div class="section-label" style="margin:0">Palpites de Todos</div>
+      <button class="btn-refresh" onclick="loadRoundData()">↻ Atualizar</button>
+    </div>
+    <!-- Sub-abas de rodada -->
+    <div class="palpites-rodada-bar">
+      <button class="palpites-rodada-btn active" id="pr-btn-r1"   onclick="showPalpitesRodada('r1',this)">Rodada 1</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-r2"   onclick="showPalpitesRodada('r2',this)">Rodada 2</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-r3"   onclick="showPalpitesRodada('r3',this)">Rodada 3</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-mata" onclick="showPalpitesRodada('mata',this)">Mata-mata</button>
+    </div>
+    <div class="palpites-rodada-panel active" id="pr-panel-r1"><div class="loading"><div class="spinner"></div>Carregando...</div></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-r2"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-r3"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-mata"></div>
   </div>
 
   <!-- 🔧 ADMIN -->
@@ -632,6 +679,7 @@ function showTab(tab, btn) {
   btn.classList.add('active');
   document.getElementById('rodadasBar').style.display = tab === 'palpitar' ? 'flex' : 'none';
   if (tab === 'ranking') loadRanking();
+  if (tab === 'palpites') loadRoundData();
   if (tab === 'admin' && adminLoggedIn) { loadAdminJogos(); renderPhaseControlGrid(); loadAdminEspeciais(); }
 }
 
@@ -870,6 +918,124 @@ function showToast(msg, isError=false) {
   t.textContent = msg; t.className = 'toast'+(isError?' error':'');
   void t.offsetWidth; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+
+// ─── PALPITES DE TODOS ───────────────────────────────────────────────────────
+let roundDataCache = null;
+
+async function loadRoundData(force = false) {
+  if (roundDataCache && !force) { renderAllRounds(roundDataCache); return; }
+  // Show spinner in active panel
+  document.querySelectorAll('.palpites-rodada-panel').forEach(p => {
+    if (p.classList.contains('active')) p.innerHTML = '<div class="loading"><div class="spinner"></div>Carregando...</div>';
+  });
+  try {
+    const res  = await fetch(SCRIPT_URL + '?action=getRoundData&t=' + Date.now());
+    const data = await res.json();
+    roundDataCache = data;
+    renderAllRounds(data);
+  } catch(e) {
+    document.querySelectorAll('.palpites-rodada-panel').forEach(p => {
+      if (p.classList.contains('active')) p.innerHTML = '<div class="empty">Erro ao carregar palpites.</div>';
+    });
+  }
+}
+
+function showPalpitesRodada(key, btn) {
+  document.querySelectorAll('.palpites-rodada-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.palpites-rodada-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pr-panel-' + key).classList.add('active');
+  btn.classList.add('active');
+}
+
+function calcPts(p1, p2, r1, r2) {
+  p1=parseInt(p1); p2=parseInt(p2); r1=parseInt(r1); r2=parseInt(r2);
+  if (isNaN(p1)||isNaN(p2)||isNaN(r1)||isNaN(r2)) return null;
+  if (p1===r1&&p2===r2) return 15;
+  const rP=Math.sign(p1-p2), rR=Math.sign(r1-r2);
+  if (rP===rR) return (p1===r1||p2===r2)?10:5;
+  return (p1===r1||p2===r2)?2:0;
+}
+
+function renderAllRounds(data) {
+  const { palpites={}, resultados={}, participantes=[] } = data;
+  const RODADAS = [
+    { key:'r1',   label:'Rodada 1',  jogos: JOGOS_R1   },
+    { key:'r2',   label:'Rodada 2',  jogos: JOGOS_R2   },
+    { key:'r3',   label:'Rodada 3',  jogos: JOGOS_R3   },
+    { key:'mata', label:'Mata-mata', jogos: JOGOS_MATA  },
+  ];
+
+  RODADAS.forEach(rodada => {
+    const panel = document.getElementById('pr-panel-' + rodada.key);
+    if (!panel) return;
+
+    // Se fase não travada: aviso
+    if (!faseStatus[rodada.key]) {
+      panel.innerHTML = `<div class="palpites-locked-msg">🔒 Os palpites desta rodada ficam visíveis após a rodada ser travada.</div>`;
+      return;
+    }
+
+    // Agrupa jogos por grupo
+    const grupos = {};
+    rodada.jogos.forEach(j => {
+      if (!grupos[j.grupo]) grupos[j.grupo] = [];
+      grupos[j.grupo].push(j);
+    });
+
+    let html = '';
+    for (const grupo in grupos) {
+      const isMata = !grupo.startsWith('Grupo');
+      html += isMata
+        ? `<div class="phase-header" style="margin-bottom:8px">🏆 ${grupo.toUpperCase()}</div>`
+        : `<div class="palpites-group-label">${grupo}</div>`;
+
+      grupos[grupo].forEach(j => {
+        const res = resultados[j.id];
+        const temPalpites = palpites[j.id] && Object.keys(palpites[j.id]).length > 0;
+        if (!temPalpites && !res) return; // pula jogos sem nada
+
+        html += `<div class="palpites-game">
+          <div class="palpites-game-header">
+            <div class="palpites-game-title">
+              ${flagHTML(j.time1)} ${j.time1}
+              <span style="color:rgba(255,255,255,0.3);font-size:11px">vs</span>
+              ${j.time2} ${flagHTML(j.time2)}
+            </div>
+            ${res
+              ? `<div class="palpites-game-resultado">${res.p1} × ${res.p2}</div>`
+              : `<div class="palpites-game-sem-resultado">sem resultado</div>`}
+          </div>`;
+
+        if (participantes.length) {
+          participantes.forEach(nome => {
+            const p = palpites[j.id] && palpites[j.id][nome];
+            if (!p) {
+              html += `<div class="palpites-row">
+                <span class="palpites-nome">${nome}</span>
+                <span class="palpites-sem">sem palpite</span>
+              </div>`;
+              return;
+            }
+            const pts = res ? calcPts(p.p1, p.p2, res.p1, res.p2) : null;
+            const ptsClass = pts === 15 ? 'pts-15' : pts === 10 ? 'pts-10' : pts === 5 ? 'pts-5' : pts === 2 ? 'pts-2' : pts === 0 ? 'pts-0' : '';
+            const ptsLabel = pts === 15 ? '+15' : pts === 10 ? '+10' : pts === 5 ? '+5' : pts === 2 ? '+2' : pts === 0 ? '0' : '';
+            html += `<div class="palpites-row">
+              <span class="palpites-nome">${nome}</span>
+              <div class="palpites-right">
+                <span class="palpites-placar">${p.p1} × ${p.p2}</span>
+                ${pts !== null ? `<span class="palpites-pts ${ptsClass}">${ptsLabel}pts</span>` : ''}
+              </div>
+            </div>`;
+          });
+        }
+        html += `</div>`;
+      });
+    }
+
+    panel.innerHTML = html || `<div class="empty">Nenhum palpite nesta rodada ainda.</div>`;
+  });
 }
 
 renderTodosJogos();
