@@ -42,8 +42,8 @@
   .sync-dot.error { background: var(--red); }
   @keyframes pulse-dot { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
 
-  .rodadas-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); display: flex; justify-content: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(13,27,46,0.06); }
-  .rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 16px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+  .rodadas-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); display: flex; justify-content: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(13,27,46,0.06); overflow-x: auto; }
+  .rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 14px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
   .rodada-btn.active { color: var(--green-main); border-bottom-color: var(--green-main); }
   .rodada-btn:hover { color: var(--text); }
   .rodada-btn.locked { color: var(--red); opacity: 0.7; }
@@ -97,6 +97,7 @@
   .input-group label { font-size: 12px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; }
   input[type="text"], input[type="password"], input[type="number"] { border: 1.5px solid var(--gray-300); border-radius: 8px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border 0.2s; width: 100%; }
   input:focus { border-color: var(--green-main); }
+  select { border: 1.5px solid var(--gray-300); border-radius: 8px; padding: 8px 10px; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text); outline: none; background: var(--white); }
 
   .btn-save { background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #0d1b2e; border: none; border-radius: 8px; padding: 11px 22px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s; white-space: nowrap; }
   .btn-save:hover { opacity: 0.88; }
@@ -105,12 +106,14 @@
 
   .phase-header { background: linear-gradient(135deg, #0d1b2e 0%, #1a3a5c 100%); color: var(--white); border-radius: var(--radius); padding: 13px 18px; font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 1px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-left: 4px solid #c9a84c; }
   .game-card { background: var(--white); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 10px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; transition: opacity 0.2s; }
+  .game-card.game-card-pending { opacity: 0.6; background: var(--gray-100); box-shadow: none; }
   .game-info { flex: 1; min-width: 0; }
   .game-meta { font-size: 10px; color: var(--gray-500); margin-bottom: 8px; font-weight: 500; text-align: center; }
   .game-teams { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .team-block { display: flex; align-items: center; gap: 6px; flex: 1; }
+  .team-block { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; }
   .team-block.right { flex-direction: row-reverse; }
   .team-name { font-size: 13px; font-weight: 700; }
+  .team-name.team-name-pending { font-size: 11px; font-weight: 500; color: var(--gray-500); font-style: italic; }
   .team-block.right .team-name { text-align: right; }
   .vs-text { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--gray-300); flex-shrink: 0; }
   .game-inputs { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
@@ -118,6 +121,7 @@
   .score-sep { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gray-300); }
   .team-flag-img { width: 28px; height: 20px; object-fit: cover; border-radius: 3px; flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.15); background: var(--gray-100); }
   .team-flag-unknown { width: 28px; height: 20px; border-radius: 3px; flex-shrink: 0; background: var(--gray-300); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-500); }
+  .pending-label { font-size: 11px; color: var(--gray-500); font-style: italic; flex-shrink: 0; padding: 0 4px; }
 
   .ranking-table { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
   .ranking-row { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--gray-100); transition: background 0.15s; gap: 14px; }
@@ -142,20 +146,24 @@
   .admin-panel { display: none; }
   .admin-panel.active { display: block; }
   .results-grid { display: flex; flex-direction: column; gap: 10px; }
-  .result-card { background: var(--white); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px; }
+  .result-card { background: var(--white); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+  .result-card-top { display: flex; align-items: center; gap: 12px; }
   .result-teams { flex: 1; font-weight: 600; font-size: 14px; }
   .result-meta { font-size: 11px; color: var(--gray-500); font-weight: 400; }
+  .result-pending { font-size: 12px; color: var(--gray-500); font-style: italic; padding: 4px 0; }
+  .result-penalti-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--gray-500); }
+  .result-group-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--green-main); margin: 16px 0 4px; }
 
   .phase-control-card { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); }
   .phase-control-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
-  .phase-row { display: flex; align-items: center; justify-content: space-between; background: var(--green-pale); border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--gray-100); transition: border-color 0.2s; }
+  .phase-row { display: flex; align-items: center; justify-content: space-between; background: var(--green-pale); border-radius: 10px; padding: 12px 16px; border: 1.5px solid var(--gray-100); transition: border-color 0.2s; gap: 10px; }
   .phase-row.is-locked { background: #fff5f5; border-color: #f5c6c6; }
   .phase-row-info { display: flex; flex-direction: column; gap: 2px; }
   .phase-row-name { font-size: 14px; font-weight: 700; color: var(--text); }
   .phase-row-status { font-size: 11px; font-weight: 600; }
   .phase-row-status.open { color: #2a9d58; }
   .phase-row-status.locked { color: var(--red); }
-  .btn-phase-toggle { border: none; border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .btn-phase-toggle { border: none; border-radius: 8px; padding: 8px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
   .btn-phase-toggle.btn-lock { background: #fff0f0; color: var(--red); border: 1.5px solid #f5c6c6; }
   .btn-phase-toggle.btn-lock:hover { background: #fde8e8; }
   .btn-phase-toggle.btn-unlock { background: #f0faf4; color: #2a9d58; border: 1.5px solid #b7e5c8; }
@@ -181,7 +189,7 @@
 
   /* PALPITES DE TODOS */
   .palpites-rodada-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); display: flex; overflow-x: auto; margin-bottom: 20px; border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow); }
-  .palpites-rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 16px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .palpites-rodada-btn { background: none; border: none; border-bottom: 3px solid transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--gray-500); padding: 12px 14px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; }
   .palpites-rodada-btn.active { color: var(--green-main); border-bottom-color: var(--green-main); }
   .palpites-rodada-btn:hover { color: var(--text); }
   .palpites-rodada-panel { display: none; }
@@ -242,10 +250,14 @@
 </div>
 
 <div class="rodadas-bar" id="rodadasBar">
-  <button class="rodada-btn active" id="tab-btn-r1" onclick="showRodada('r1', this)">Rodada 1</button>
-  <button class="rodada-btn" id="tab-btn-r2" onclick="showRodada('r2', this)">Rodada 2</button>
-  <button class="rodada-btn" id="tab-btn-r3" onclick="showRodada('r3', this)">Rodada 3</button>
-  <button class="rodada-btn" id="tab-btn-mata" onclick="showRodada('mata', this)">Mata-mata</button>
+  <button class="rodada-btn active" id="tab-btn-r1"      onclick="showRodada('r1', this)">Rodada 1</button>
+  <button class="rodada-btn"        id="tab-btn-r2"      onclick="showRodada('r2', this)">Rodada 2</button>
+  <button class="rodada-btn"        id="tab-btn-r3"      onclick="showRodada('r3', this)">Rodada 3</button>
+  <button class="rodada-btn"        id="tab-btn-r32"     onclick="showRodada('r32', this)">16 Avos</button>
+  <button class="rodada-btn"        id="tab-btn-oitavas" onclick="showRodada('oitavas', this)">Oitavas</button>
+  <button class="rodada-btn"        id="tab-btn-quartas" onclick="showRodada('quartas', this)">Quartas</button>
+  <button class="rodada-btn"        id="tab-btn-semis"   onclick="showRodada('semis', this)">Semifinal</button>
+  <button class="rodada-btn"        id="tab-btn-final"   onclick="showRodada('final', this)">Final</button>
 </div>
 
 <div class="main">
@@ -276,7 +288,11 @@
     <div class="rodada-panel active" id="panel-r1"><div id="jogosR1"></div></div>
     <div class="rodada-panel" id="panel-r2"><div id="jogosR2"></div></div>
     <div class="rodada-panel" id="panel-r3"><div id="jogosR3"></div></div>
-    <div class="rodada-panel" id="panel-mata"><div id="jogosMata"></div></div>
+    <div class="rodada-panel" id="panel-r32"><div id="jogosR32"></div></div>
+    <div class="rodada-panel" id="panel-oitavas"><div id="jogosOitavas"></div></div>
+    <div class="rodada-panel" id="panel-quartas"><div id="jogosQuartas"></div></div>
+    <div class="rodada-panel" id="panel-semis"><div id="jogosSemis"></div></div>
+    <div class="rodada-panel" id="panel-final"><div id="jogosFinal"></div></div>
   </div>
 
   <!-- ⭐ ESPECIAIS -->
@@ -347,17 +363,24 @@
       <div class="section-label" style="margin:0">Palpites de Todos</div>
       <button class="btn-refresh" onclick="loadRoundData()">↻ Atualizar</button>
     </div>
-    <!-- Sub-abas de rodada -->
     <div class="palpites-rodada-bar">
-      <button class="palpites-rodada-btn active" id="pr-btn-r1"   onclick="showPalpitesRodada('r1',this)">Rodada 1</button>
-      <button class="palpites-rodada-btn"         id="pr-btn-r2"   onclick="showPalpitesRodada('r2',this)">Rodada 2</button>
-      <button class="palpites-rodada-btn"         id="pr-btn-r3"   onclick="showPalpitesRodada('r3',this)">Rodada 3</button>
-      <button class="palpites-rodada-btn"         id="pr-btn-mata" onclick="showPalpitesRodada('mata',this)">Mata-mata</button>
+      <button class="palpites-rodada-btn active" id="pr-btn-r1"      onclick="showPalpitesRodada('r1',this)">Rodada 1</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-r2"      onclick="showPalpitesRodada('r2',this)">Rodada 2</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-r3"      onclick="showPalpitesRodada('r3',this)">Rodada 3</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-r32"     onclick="showPalpitesRodada('r32',this)">16 Avos</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-oitavas" onclick="showPalpitesRodada('oitavas',this)">Oitavas</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-quartas" onclick="showPalpitesRodada('quartas',this)">Quartas</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-semis"   onclick="showPalpitesRodada('semis',this)">Semifinal</button>
+      <button class="palpites-rodada-btn"         id="pr-btn-final"   onclick="showPalpitesRodada('final',this)">Final</button>
     </div>
     <div class="palpites-rodada-panel active" id="pr-panel-r1"><div class="loading"><div class="spinner"></div>Carregando...</div></div>
     <div class="palpites-rodada-panel"        id="pr-panel-r2"></div>
     <div class="palpites-rodada-panel"        id="pr-panel-r3"></div>
-    <div class="palpites-rodada-panel"        id="pr-panel-mata"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-r32"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-oitavas"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-quartas"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-semis"></div>
+    <div class="palpites-rodada-panel"        id="pr-panel-final"></div>
   </div>
 
   <!-- 🔧 ADMIN -->
@@ -382,7 +405,7 @@
       <div class="phase-control-card">
         <div class="section-label" style="margin:0">🔒 Controle de Fases</div>
         <div class="phase-control-grid" id="phaseControlGrid"></div>
-        <div class="phase-control-note">ℹ️ Fases travadas não aceitam novos palpites. Trave cada rodada assim que os jogos começarem.</div>
+        <div class="phase-control-note">ℹ️ Fases travadas não aceitam novos palpites. Trave cada fase assim que os jogos começarem. Final e Terceiro Lugar travam juntos.</div>
       </div>
 
       <!-- DEFINIR CAMPEÃO REAL -->
@@ -411,7 +434,7 @@
       <div class="flex items-center justify-between" style="margin-bottom:8px">
         <div class="section-label" style="margin:0">📋 Lançar Resultados</div>
       </div>
-      <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Preencha apenas jogos já disputados e clique em Salvar Resultados.</p>
+      <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Preencha apenas jogos já disputados. Em jogos do mata-mata empatados, escolha quem avançou nos pênaltis. Clique em Salvar Resultados.</p>
       <div id="adminJogosContainer"><div class="loading"><div class="spinner"></div>Carregando jogos...</div></div>
       <button class="btn-save mt-16" style="width:100%" onclick="saveResultados()">💾 Salvar Resultados</button>
     </div>
@@ -424,8 +447,13 @@
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzKrB47HS6jKAdGvHAXzhLZ08RCCRddKjLUXN_OeVzbVRwGbkDrbvO4t1cD8iJT4mAIdA/exec';
 
-const FASE_NAMES = { r1: 'Rodada 1', r2: 'Rodada 2', r3: 'Rodada 3', mata: 'Mata-mata' };
-let faseStatus = { r1: false, r2: false, r3: false, mata: false };
+const FASE_NAMES = {
+  r1: 'Rodada 1', r2: 'Rodada 2', r3: 'Rodada 3',
+  r32: '16 Avos de Final', oitavas: 'Oitavas de Final', quartas: 'Quartas de Final',
+  semis: 'Semifinal', final: 'Final + Terceiro Lugar'
+};
+let faseStatus = { r1:false, r2:false, r3:false, r32:false, oitavas:false, quartas:false, semis:false, final:false };
+let resultadosCache = {};
 let pollingInterval = null;
 let lastSyncOk = false;
 
@@ -538,57 +566,161 @@ const JOGOS_R3 = [
   {id:'L005',fase:'Fase de Grupos',grupo:'Grupo L',time1:'Panamá',time2:'Inglaterra',data:'27/06'},
   {id:'L006',fase:'Fase de Grupos',grupo:'Grupo L',time1:'Croácia',time2:'Gana',data:'27/06'},
 ];
-const JOGOS_MATA = [
-  {id:'R001',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'28/06'},
-  {id:'R002',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'28/06'},
-  {id:'R003',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'29/06'},
-  {id:'R004',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'29/06'},
-  {id:'R005',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'30/06'},
-  {id:'R006',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'30/06'},
-  {id:'R007',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'01/07'},
-  {id:'R008',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'01/07'},
-  {id:'R009',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'02/07'},
-  {id:'R010',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'02/07'},
-  {id:'R011',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'03/07'},
-  {id:'R012',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'03/07'},
-  {id:'R013',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'04/07'},
-  {id:'R014',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'04/07'},
-  {id:'R015',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'05/07'},
-  {id:'R016',fase:'Rodada de 32',grupo:'Rodada de 32',time1:'A definir',time2:'A definir',data:'05/07'},
-  {id:'O001',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'06/07'},
-  {id:'O002',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'06/07'},
-  {id:'O003',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'07/07'},
-  {id:'O004',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'07/07'},
-  {id:'O005',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'08/07'},
-  {id:'O006',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'08/07'},
-  {id:'O007',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'09/07'},
-  {id:'O008',fase:'Oitavas de Final',grupo:'Oitavas de Final',time1:'A definir',time2:'A definir',data:'09/07'},
-  {id:'Q001',fase:'Quartas de Final',grupo:'Quartas de Final',time1:'A definir',time2:'A definir',data:'11/07'},
-  {id:'Q002',fase:'Quartas de Final',grupo:'Quartas de Final',time1:'A definir',time2:'A definir',data:'11/07'},
-  {id:'Q003',fase:'Quartas de Final',grupo:'Quartas de Final',time1:'A definir',time2:'A definir',data:'12/07'},
-  {id:'Q004',fase:'Quartas de Final',grupo:'Quartas de Final',time1:'A definir',time2:'A definir',data:'12/07'},
-  {id:'S001',fase:'Semifinal',grupo:'Semifinal',time1:'A definir',time2:'A definir',data:'14/07'},
-  {id:'S002',fase:'Semifinal',grupo:'Semifinal',time1:'A definir',time2:'A definir',data:'15/07'},
-  {id:'T001',fase:'Terceiro Lugar',grupo:'Terceiro Lugar',time1:'A definir',time2:'A definir',data:'18/07'},
-  {id:'X001',fase:'Final',grupo:'Final',time1:'A definir',time2:'A definir',data:'19/07'},
+
+// ════════════════════════════════════════════════════════════════════════════
+// MATA-MATA — 16 Avos de Final (jogos reais e confirmados)
+// Ordem abaixo = ordem do chaveamento: Jogo 1 x Jogo 2 → vencedor cai na mesma
+// chave das Oitavas; Jogo 3 x Jogo 4 → próxima chave; e assim por diante.
+// ════════════════════════════════════════════════════════════════════════════
+const JOGOS_R32 = [
+  {id:'R001',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Alemanha',     time2:'Paraguai',        data:'29/06'},
+  {id:'R002',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'França',       time2:'Suécia',          data:'30/06'},
+  {id:'R003',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Canadá',       time2:'África do Sul',   data:'28/06'},
+  {id:'R004',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Holanda',      time2:'Marrocos',        data:'29/06'},
+  {id:'R005',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Portugal',     time2:'Croácia',         data:'02/07'},
+  {id:'R006',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Espanha',      time2:'Áustria',         data:'02/07'},
+  {id:'R007',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Estados Unidos',time2:'Bósnia',         data:'01/07'},
+  {id:'R008',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Bélgica',      time2:'Senegal',         data:'01/07'},
+  {id:'R009',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Brasil',       time2:'Japão',           data:'29/06'},
+  {id:'R010',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Noruega',      time2:'Costa do Marfim', data:'30/06'},
+  {id:'R011',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'México',       time2:'Equador',         data:'30/06'},
+  {id:'R012',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Inglaterra',   time2:'Congo DR',        data:'01/07'},
+  {id:'R013',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Argentina',    time2:'Cabo Verde',      data:'03/07'},
+  {id:'R014',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Egito',        time2:'Austrália',       data:'03/07'},
+  {id:'R015',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Suíça',        time2:'Argélia',         data:'03/07'},
+  {id:'R016',fase:'16 Avos de Final',grupo:'16 Avos de Final',time1:'Colômbia',     time2:'Gana',            data:'03/07'},
 ];
-const JOGOS = [...JOGOS_R1, ...JOGOS_R2, ...JOGOS_R3, ...JOGOS_MATA];
+
+// Fases seguintes — sem times fixos, resolvidos automaticamente a partir dos
+// resultados (ver BRACKET_MAP + resolveMatch). Datas mantidas como estimativa.
+const JOGOS_OITAVAS = [
+  {id:'O001',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'06/07'},
+  {id:'O002',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'06/07'},
+  {id:'O003',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'07/07'},
+  {id:'O004',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'07/07'},
+  {id:'O005',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'08/07'},
+  {id:'O006',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'08/07'},
+  {id:'O007',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'09/07'},
+  {id:'O008',fase:'Oitavas de Final',grupo:'Oitavas de Final',data:'09/07'},
+];
+const JOGOS_QUARTAS = [
+  {id:'Q001',fase:'Quartas de Final',grupo:'Quartas de Final',data:'11/07'},
+  {id:'Q002',fase:'Quartas de Final',grupo:'Quartas de Final',data:'11/07'},
+  {id:'Q003',fase:'Quartas de Final',grupo:'Quartas de Final',data:'12/07'},
+  {id:'Q004',fase:'Quartas de Final',grupo:'Quartas de Final',data:'12/07'},
+];
+const JOGOS_SEMIS = [
+  {id:'S001',fase:'Semifinal',grupo:'Semifinal',data:'14/07'},
+  {id:'S002',fase:'Semifinal',grupo:'Semifinal',data:'15/07'},
+];
+const JOGOS_FINAL = [
+  {id:'T001',fase:'Terceiro Lugar',grupo:'Terceiro Lugar',data:'18/07'},
+  {id:'X001',fase:'Final',grupo:'Final',data:'19/07'},
+];
+
+const JOGOS = [
+  ...JOGOS_R1, ...JOGOS_R2, ...JOGOS_R3,
+  ...JOGOS_R32, ...JOGOS_OITAVAS, ...JOGOS_QUARTAS, ...JOGOS_SEMIS, ...JOGOS_FINAL
+];
+
+// ════════════════════════════════════════════════════════════════════════════
+// CHAVEAMENTO — de onde vem cada jogo das fases seguintes.
+// T001 (3º lugar) usa os PERDEDORES das semis; todos os outros usam vencedores.
+// ════════════════════════════════════════════════════════════════════════════
+const BRACKET_MAP = {
+  O001: ['R001','R002'], O002: ['R003','R004'], O003: ['R005','R006'], O004: ['R007','R008'],
+  O005: ['R009','R010'], O006: ['R011','R012'], O007: ['R013','R014'], O008: ['R015','R016'],
+  Q001: ['O001','O002'], Q002: ['O003','O004'], Q003: ['O005','O006'], Q004: ['O007','O008'],
+  S001: ['Q001','Q002'], S002: ['Q003','Q004'],
+  X001: ['S001','S002'],
+  T001: ['S001','S002'],
+};
+
+function findStaticGame(id) {
+  return JOGOS_R1.find(j=>j.id===id) || JOGOS_R2.find(j=>j.id===id) ||
+         JOGOS_R3.find(j=>j.id===id) || JOGOS_R32.find(j=>j.id===id) || null;
+}
+
+function labelGame(id) {
+  const base = findStaticGame(id);
+  if (base) return base.id; // ex: "R001"
+  return id;
+}
+
+// Resolve recursivamente quem joga em cada partida do mata-mata e, se possível,
+// quem venceu/perdeu — sem precisar de nenhuma atualização manual além do
+// placar do jogo anterior.
+function resolveMatch(jogoId, resultadosMap) {
+  const base = findStaticGame(jogoId);
+  if (base) {
+    const res = resultadosMap[jogoId];
+    let winner=null, loser=null;
+    if (res) {
+      const p1=parseInt(res.p1), p2=parseInt(res.p2);
+      if (p1>p2) { winner=base.time1; loser=base.time2; }
+      else if (p2>p1) { winner=base.time2; loser=base.time1; }
+      else if (res.penalti) { winner=res.penalti; loser=(res.penalti===base.time1?base.time2:base.time1); }
+    }
+    return { time1:base.time1, time2:base.time2, winner, loser, hasResult:!!res, resolved:true, empatado: !!(res && res.p1===res.p2) };
+  }
+
+  const from = BRACKET_MAP[jogoId];
+  if (!from) return null;
+  const m1 = resolveMatch(from[0], resultadosMap);
+  const m2 = resolveMatch(from[1], resultadosMap);
+  const isThird = jogoId === 'T001';
+
+  const team1 = isThird ? (m1.loser || `Perdedor ${labelGame(from[0])}`) : (m1.winner || `Vencedor ${labelGame(from[0])}`);
+  const team2 = isThird ? (m2.loser || `Perdedor ${labelGame(from[1])}`) : (m2.winner || `Vencedor ${labelGame(from[1])}`);
+  const resolved = isThird ? !!(m1.loser && m2.loser) : !!(m1.winner && m2.winner);
+
+  const res = resultadosMap[jogoId];
+  let winner=null, loser=null;
+  if (res && resolved) {
+    const p1=parseInt(res.p1), p2=parseInt(res.p2);
+    if (p1>p2) { winner=team1; loser=team2; }
+    else if (p2>p1) { winner=team2; loser=team1; }
+    else if (res.penalti) { winner=res.penalti; loser=(res.penalti===team1?team2:team1); }
+  }
+
+  return { time1: team1, time2: team2, winner, loser, hasResult: !!res, resolved, empatado: !!(res && res.p1===res.p2) };
+}
+
+function getFaseByJobId(jogoId) {
+  if (JOGOS_R1.find(j=>j.id===jogoId)) return 'r1';
+  if (JOGOS_R2.find(j=>j.id===jogoId)) return 'r2';
+  if (JOGOS_R3.find(j=>j.id===jogoId)) return 'r3';
+  if (jogoId.startsWith('R')) return 'r32';
+  if (jogoId.startsWith('O')) return 'oitavas';
+  if (jogoId.startsWith('Q')) return 'quartas';
+  if (jogoId.startsWith('S')) return 'semis';
+  if (jogoId === 'T001' || jogoId === 'X001') return 'final';
+  return null;
+}
 
 let palpitesLocais = {};
 let adminLoggedIn = false;
 let resultadosAdmin = {};
 
-// ─── SYNC ─────────────────────────────────────────────────────────────────────
+// ─── SYNC: faseStatus + resultados num único polling ──────────────────────────
 async function fetchFaseStatus() {
   setSyncState('syncing');
   try {
     const res = await fetch(SCRIPT_URL + '?action=getFaseStatus&t=' + Date.now());
     const data = await res.json();
     if (data && data.faseStatus) {
-      const prev = JSON.stringify(faseStatus);
+      const prevFase = JSON.stringify(faseStatus);
+      const prevRes  = JSON.stringify(resultadosCache);
       faseStatus = { ...faseStatus, ...data.faseStatus };
+      resultadosCache = data.resultados || {};
       localStorage.setItem('bolao_faseStatus', JSON.stringify(faseStatus));
-      if (JSON.stringify(faseStatus) !== prev) { applyFaseStatusUI(); if (adminLoggedIn) renderPhaseControlGrid(); }
+
+      const faseChanged = JSON.stringify(faseStatus) !== prevFase;
+      const resChanged  = JSON.stringify(resultadosCache) !== prevRes;
+
+      if (faseChanged) { applyFaseStatusUI(); if (adminLoggedIn) renderPhaseControlGrid(); }
+      if (faseChanged || resChanged) { renderMataFases(); if (document.getElementById('tab-palpites').classList.contains('active')) loadRoundData(true); }
+
       setSyncState('ok'); lastSyncOk = true; return true;
     }
   } catch (e) { setSyncState('error'); lastSyncOk = false; }
@@ -608,7 +740,7 @@ async function toggleFase(key) {
   if (btn) btn.disabled = true;
   faseStatus[key] = !faseStatus[key];
   localStorage.setItem('bolao_faseStatus', JSON.stringify(faseStatus));
-  applyFaseStatusUI(); renderPhaseControlGrid(); setSyncState('syncing');
+  applyFaseStatusUI(); renderPhaseControlGrid(); renderMataFases(); setSyncState('syncing');
   try {
     const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ action: 'setFaseStatus', faseStatus }) });
     const data = await res.json();
@@ -623,9 +755,9 @@ function applyFaseStatusUI() {
     const tabBtn = document.getElementById('tab-btn-' + key);
     if (!tabBtn) return;
     tabBtn.classList.toggle('locked', faseStatus[key]);
-    tabBtn.innerHTML = faseStatus[key] ? `🔒 ${FASE_NAMES[key]}` : FASE_NAMES[key];
+    tabBtn.innerHTML = faseStatus[key] ? `🔒 ${FASE_NAMES[key].replace(' + Terceiro Lugar','')}` : FASE_NAMES[key].replace(' + Terceiro Lugar','');
   });
-  Object.keys(faseStatus).forEach(key => {
+  ['r1','r2','r3','r32','oitavas','quartas','semis','final'].forEach(key => {
     const panel = document.getElementById('panel-' + key);
     if (!panel) return;
     let banner = panel.querySelector('.locked-banner');
@@ -633,7 +765,7 @@ function applyFaseStatusUI() {
       panel.classList.add('panel-locked');
       if (!banner) {
         banner = document.createElement('div'); banner.className = 'locked-banner';
-        banner.innerHTML = `<div class="locked-banner-icon">🔒</div><div class="locked-banner-text"><h3>Fase encerrada para palpites</h3><p>Os jogos desta rodada já começaram.</p></div>`;
+        banner.innerHTML = `<div class="locked-banner-icon">🔒</div><div class="locked-banner-text"><h3>Fase encerrada para palpites</h3><p>Os jogos desta fase já começaram.</p></div>`;
         panel.insertBefore(banner, panel.firstChild);
       }
       panel.querySelectorAll('.score-input').forEach(i => { i.disabled = true; i.setAttribute('readonly', true); });
@@ -690,7 +822,7 @@ function showRodada(rodada, btn) {
   btn.classList.add('active');
 }
 
-// ─── GAME CARDS ──────────────────────────────────────────────────────────────
+// ─── GAME CARDS — FASE DE GRUPOS (times fixos) ────────────────────────────────
 function buildGameCard(j) {
   const p = palpitesLocais[j.id] || { t1: '', t2: '' };
   return `<div class="game-card">
@@ -716,20 +848,67 @@ function renderGrupos(jogos, containerId) {
   jogos.forEach(j => { if (!grupos[j.grupo]) grupos[j.grupo] = []; grupos[j.grupo].push(j); });
   let html = '';
   for (const grupo in grupos) {
-    const isMata = !grupo.startsWith('Grupo');
-    html += isMata ? `<div class="phase-header">🏆 ${grupo.toUpperCase()}</div>` : `<div style="font-size:12px;font-weight:700;color:var(--green-main);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px">${grupo}</div>`;
+    html += `<div style="font-size:12px;font-weight:700;color:var(--green-main);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px">${grupo}</div>`;
     grupos[grupo].forEach(j => { html += buildGameCard(j); });
   }
   container.innerHTML = html;
 }
 
+// ─── GAME CARDS — MATA-MATA (times resolvidos automaticamente) ────────────────
+function buildDynamicGameCard(j) {
+  const info = resolveMatch(j.id, resultadosCache);
+  const p = palpitesLocais[j.id] || { t1: '', t2: '' };
+  const pending = !info.resolved;
+
+  const team1Html = pending
+    ? `<span class="team-name team-name-pending">${info.time1}</span>`
+    : `${flagHTML(info.time1)}<span class="team-name">${info.time1}</span>`;
+  const team2Html = pending
+    ? `<span class="team-name team-name-pending">${info.time2}</span>`
+    : `<span class="team-name">${info.time2}</span>${flagHTML(info.time2)}`;
+
+  const inputsHtml = pending
+    ? `<span class="pending-label">Aguardando definição</span>`
+    : `<input type="number" class="score-input" id="p_${j.id}_1" min="0" max="99" value="${p.t1}" placeholder="–" oninput="savePalpiteLocal('${j.id}')">
+       <span class="score-sep">:</span>
+       <input type="number" class="score-input" id="p_${j.id}_2" min="0" max="99" value="${p.t2}" placeholder="–" oninput="savePalpiteLocal('${j.id}')">`;
+
+  return `<div class="game-card ${pending ? 'game-card-pending' : ''}">
+    <div class="game-info">
+      <div class="game-meta">${j.data} · ${j.grupo}</div>
+      <div class="game-teams">
+        <div class="team-block">${team1Html}</div>
+        <span class="vs-text">VS</span>
+        <div class="team-block right">${team2Html}</div>
+      </div>
+    </div>
+    <div class="game-inputs">${inputsHtml}</div>
+  </div>`;
+}
+
+function renderMataFase(jogos, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  let html = '';
+  jogos.forEach(j => { html += buildDynamicGameCard(j); });
+  container.innerHTML = html;
+}
+
+function renderMataFases() {
+  renderMataFase(JOGOS_R32,     'jogosR32');
+  renderMataFase(JOGOS_OITAVAS, 'jogosOitavas');
+  renderMataFase(JOGOS_QUARTAS, 'jogosQuartas');
+  renderMataFase(JOGOS_SEMIS,   'jogosSemis');
+  renderMataFase(JOGOS_FINAL,   'jogosFinal');
+}
+
 function renderTodosJogos() {
-  renderGrupos(JOGOS_R1,'jogosR1'); renderGrupos(JOGOS_R2,'jogosR2');
-  renderGrupos(JOGOS_R3,'jogosR3'); renderGrupos(JOGOS_MATA,'jogosMata');
+  renderGrupos(JOGOS_R1,'jogosR1'); renderGrupos(JOGOS_R2,'jogosR2'); renderGrupos(JOGOS_R3,'jogosR3');
+  renderMataFases();
 }
 
 function savePalpiteLocal(jogoId) {
-  const fase = JOGOS_R1.find(j=>j.id===jogoId)?'r1':JOGOS_R2.find(j=>j.id===jogoId)?'r2':JOGOS_R3.find(j=>j.id===jogoId)?'r3':'mata';
+  const fase = getFaseByJobId(jogoId);
   if (faseStatus[fase]) return;
   palpitesLocais[jogoId] = { t1: document.getElementById('p_'+jogoId+'_1').value, t2: document.getElementById('p_'+jogoId+'_2').value };
 }
@@ -739,11 +918,17 @@ async function savePalpites() {
   if (!name) { showToast('Digite seu nome antes de salvar!', true); return; }
   const entries = [];
   JOGOS.forEach(j => {
-    const fase = JOGOS_R1.find(x=>x.id===j.id)?'r1':JOGOS_R2.find(x=>x.id===j.id)?'r2':JOGOS_R3.find(x=>x.id===j.id)?'r3':'mata';
+    const fase = getFaseByJobId(j.id);
     if (faseStatus[fase]) return;
     const v1 = document.getElementById('p_'+j.id+'_1')?.value;
     const v2 = document.getElementById('p_'+j.id+'_2')?.value;
-    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) entries.push({jogoId:j.id,time1:j.time1,time2:j.time2,placar1:v1,placar2:v2});
+    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) {
+      // Para jogos do mata-mata, usa os nomes de times já resolvidos no momento do palpite
+      const info = (j.fase==='Fase de Grupos') ? null : resolveMatch(j.id, resultadosCache);
+      const time1 = info ? info.time1 : j.time1;
+      const time2 = info ? info.time2 : j.time2;
+      entries.push({jogoId:j.id,time1:time1,time2:time2,placar1:v1,placar2:v2});
+    }
   });
   if (!entries.length) { showToast('Preencha pelo menos um palpite em fase aberta!', true); return; }
   const btn = document.querySelector('[onclick="savePalpites()"]');
@@ -872,29 +1057,75 @@ function adminLogout() {
   document.getElementById('adminPass').value = '';
 }
 
-function loadAdminJogos() {
-  const c = document.getElementById('adminJogosContainer');
-  let html = '<div class="results-grid">';
-  JOGOS.forEach(j => {
-    const r = resultadosAdmin[j.id] || {t1:'',t2:''};
-    html += `<div class="result-card">
-      <div class="result-teams">
-        <div style="display:flex;align-items:center;gap:6px">${flagHTML(j.time1)} ${j.time1} vs ${j.time2} ${flagHTML(j.time2)}</div>
-        <div class="result-meta">${j.data} · ${j.grupo}</div>
-      </div>
-      <div class="game-inputs">
-        <input type="number" class="score-input" id="r_${j.id}_1" min="0" max="99" value="${r.t1}" placeholder="–" oninput="saveResultadoLocal('${j.id}')">
-        <span class="score-sep">:</span>
-        <input type="number" class="score-input" id="r_${j.id}_2" min="0" max="99" value="${r.t2}" placeholder="–" oninput="saveResultadoLocal('${j.id}')">
-      </div>
-    </div>`;
+function prefillResultadosAdmin() {
+  Object.keys(resultadosCache).forEach(jogoId => {
+    if (resultadosAdmin[jogoId] === undefined) {
+      const rc = resultadosCache[jogoId];
+      resultadosAdmin[jogoId] = { t1: rc.p1, t2: rc.p2, penalti: rc.penalti || '' };
+    }
   });
+}
+
+function loadAdminJogos() {
+  prefillResultadosAdmin();
+  const c = document.getElementById('adminJogosContainer');
+  const grupos = {};
+  JOGOS.forEach(j => { if (!grupos[j.grupo]) grupos[j.grupo] = []; grupos[j.grupo].push(j); });
+  let html = '<div class="results-grid">';
+  for (const grupo in grupos) {
+    html += `<div class="result-group-label">${grupo}</div>`;
+    grupos[grupo].forEach(j => {
+      const info = resolveMatch(j.id, resultadosCache);
+      const time1 = info.time1, time2 = info.time2;
+      const r = resultadosAdmin[j.id] || { t1:'', t2:'', penalti:'' };
+
+      if (!info.resolved) {
+        html += `<div class="result-card">
+          <div class="result-card-top">
+            <div class="result-teams">
+              <div>${time1} vs ${time2}</div>
+              <div class="result-meta">${j.data}</div>
+            </div>
+          </div>
+          <div class="result-pending">⏳ Aguardando o resultado do jogo anterior</div>
+        </div>`;
+        return;
+      }
+
+      const isGroup = (j.fase === 'Fase de Grupos');
+      html += `<div class="result-card">
+        <div class="result-card-top">
+          <div class="result-teams">
+            <div style="display:flex;align-items:center;gap:6px">${flagHTML(time1)} ${time1} vs ${time2} ${flagHTML(time2)}</div>
+            <div class="result-meta">${j.data} · ${j.grupo}</div>
+          </div>
+          <div class="game-inputs">
+            <input type="number" class="score-input" id="r_${j.id}_1" min="0" max="99" value="${r.t1}" placeholder="–" oninput="saveResultadoLocal('${j.id}')">
+            <span class="score-sep">:</span>
+            <input type="number" class="score-input" id="r_${j.id}_2" min="0" max="99" value="${r.t2}" placeholder="–" oninput="saveResultadoLocal('${j.id}')">
+          </div>
+        </div>
+        ${!isGroup ? `<div class="result-penalti-row">
+          ⚽ Se empatar, venceu nos pênaltis:
+          <select id="pen_${j.id}" onchange="saveResultadoLocal('${j.id}')">
+            <option value="">—</option>
+            <option value="${time1}" ${r.penalti===time1?'selected':''}>${time1}</option>
+            <option value="${time2}" ${r.penalti===time2?'selected':''}>${time2}</option>
+          </select>
+        </div>` : ''}
+      </div>`;
+    });
+  }
   html += '</div>';
   c.innerHTML = html;
 }
 
 function saveResultadoLocal(jogoId) {
-  resultadosAdmin[jogoId] = { t1: document.getElementById('r_'+jogoId+'_1').value, t2: document.getElementById('r_'+jogoId+'_2').value };
+  const t1 = document.getElementById('r_'+jogoId+'_1').value;
+  const t2 = document.getElementById('r_'+jogoId+'_2').value;
+  const penEl = document.getElementById('pen_'+jogoId);
+  const penalti = penEl ? penEl.value : '';
+  resultadosAdmin[jogoId] = { t1, t2, penalti };
 }
 
 async function saveResultados() {
@@ -902,31 +1133,31 @@ async function saveResultados() {
   JOGOS.forEach(j => {
     const v1 = document.getElementById('r_'+j.id+'_1')?.value;
     const v2 = document.getElementById('r_'+j.id+'_2')?.value;
-    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) entries.push({jogoId:j.id,time1:j.time1,time2:j.time2,placar1:v1,placar2:v2});
+    if (v1!==''&&v2!==''&&v1!==undefined&&v2!==undefined) {
+      const info = resolveMatch(j.id, resultadosCache);
+      const penEl = document.getElementById('pen_'+j.id);
+      const penalti = penEl ? penEl.value : '';
+      entries.push({jogoId:j.id, time1:info.time1, time2:info.time2, placar1:v1, placar2:v2, penalti});
+    }
   });
   if (!entries.length) { showToast('Preencha pelo menos um resultado!', true); return; }
   try {
     const res  = await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:'saveResultados',resultados:entries})});
     const data = await res.json();
-    if (data.success) showToast('✅ Resultados salvos!');
-    else showToast('Erro: '+(data.error||'Tente novamente'), true);
+    if (data.success) {
+      showToast('✅ Resultados salvos!');
+      // Atualiza o cache de resultados imediatamente para já propagar o chaveamento
+      await fetchFaseStatus();
+      loadAdminJogos();
+    } else showToast('Erro: '+(data.error||'Tente novamente'), true);
   } catch(e) { showToast('Erro de conexão.', true); }
 }
-
-function showToast(msg, isError=false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast'+(isError?' error':'');
-  void t.offsetWidth; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
 
 // ─── PALPITES DE TODOS ───────────────────────────────────────────────────────
 let roundDataCache = null;
 
 async function loadRoundData(force = false) {
   if (roundDataCache && !force) { renderAllRounds(roundDataCache); return; }
-  // Show spinner in active panel
   document.querySelectorAll('.palpites-rodada-panel').forEach(p => {
     if (p.classList.contains('active')) p.innerHTML = '<div class="loading"><div class="spinner"></div>Carregando...</div>';
   });
@@ -961,28 +1192,27 @@ function calcPts(p1, p2, r1, r2) {
 function renderAllRounds(data) {
   const { palpites={}, resultados={}, participantes=[] } = data;
   const RODADAS = [
-    { key:'r1',   label:'Rodada 1',  jogos: JOGOS_R1   },
-    { key:'r2',   label:'Rodada 2',  jogos: JOGOS_R2   },
-    { key:'r3',   label:'Rodada 3',  jogos: JOGOS_R3   },
-    { key:'mata', label:'Mata-mata', jogos: JOGOS_MATA  },
+    { key:'r1',      jogos: JOGOS_R1 },
+    { key:'r2',      jogos: JOGOS_R2 },
+    { key:'r3',      jogos: JOGOS_R3 },
+    { key:'r32',     jogos: JOGOS_R32 },
+    { key:'oitavas', jogos: JOGOS_OITAVAS },
+    { key:'quartas', jogos: JOGOS_QUARTAS },
+    { key:'semis',   jogos: JOGOS_SEMIS },
+    { key:'final',   jogos: JOGOS_FINAL },
   ];
 
   RODADAS.forEach(rodada => {
     const panel = document.getElementById('pr-panel-' + rodada.key);
     if (!panel) return;
 
-    // Se fase não travada: aviso
     if (!faseStatus[rodada.key]) {
-      panel.innerHTML = `<div class="palpites-locked-msg">🔒 Os palpites desta rodada ficam visíveis após a rodada ser travada.</div>`;
+      panel.innerHTML = `<div class="palpites-locked-msg">🔒 Os palpites desta fase ficam visíveis após a fase ser travada.</div>`;
       return;
     }
 
-    // Agrupa jogos por grupo
     const grupos = {};
-    rodada.jogos.forEach(j => {
-      if (!grupos[j.grupo]) grupos[j.grupo] = [];
-      grupos[j.grupo].push(j);
-    });
+    rodada.jogos.forEach(j => { if (!grupos[j.grupo]) grupos[j.grupo] = []; grupos[j.grupo].push(j); });
 
     let html = '';
     for (const grupo in grupos) {
@@ -992,16 +1222,20 @@ function renderAllRounds(data) {
         : `<div class="palpites-group-label">${grupo}</div>`;
 
       grupos[grupo].forEach(j => {
-        const res = resultados[j.id];
+        // resolveMatch funciona tanto para fase de grupos (times fixos) quanto
+        // para o mata-mata (times resolvidos a partir do chaveamento)
+        const info  = resolveMatch(j.id, resultados);
+        const time1 = info.time1, time2 = info.time2;
+        const res   = resultados[j.id];
         const temPalpites = palpites[j.id] && Object.keys(palpites[j.id]).length > 0;
-        if (!temPalpites && !res) return; // pula jogos sem nada
+        if (!temPalpites && !res) return;
 
         html += `<div class="palpites-game">
           <div class="palpites-game-header">
             <div class="palpites-game-title">
-              ${flagHTML(j.time1)} ${j.time1}
+              ${flagHTML(time1)} ${time1}
               <span style="color:rgba(255,255,255,0.3);font-size:11px">vs</span>
-              ${j.time2} ${flagHTML(j.time2)}
+              ${time2} ${flagHTML(time2)}
             </div>
             ${res
               ? `<div class="palpites-game-resultado">${res.p1} × ${res.p2}</div>`
@@ -1034,10 +1268,19 @@ function renderAllRounds(data) {
       });
     }
 
-    panel.innerHTML = html || `<div class="empty">Nenhum palpite nesta rodada ainda.</div>`;
+    panel.innerHTML = html || `<div class="empty">Nenhum palpite nesta fase ainda.</div>`;
   });
 }
 
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg, isError=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast'+(isError?' error':'');
+  void t.offsetWidth; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 renderTodosJogos();
 loadFaseStatus();
 </script>
